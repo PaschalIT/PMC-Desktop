@@ -35,7 +35,7 @@
             this.circProgressLoading.ForeColor = System.Drawing.Color.Black;
             this.circProgressLoading.InnerColor = System.Drawing.Color.Transparent;
             this.circProgressLoading.InnerMargin = 0;
-            this.circProgressLoading.InnerWidth = -1;
+            this.circProgressLoading.InnerWidth = 0;
             this.circProgressLoading.Location = new System.Drawing.Point(282, 133);
             this.circProgressLoading.MarqueeAnimationSpeed = 2000;
             this.circProgressLoading.Name = "circProgressLoading";
