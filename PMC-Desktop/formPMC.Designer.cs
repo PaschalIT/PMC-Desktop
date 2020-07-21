@@ -88,7 +88,7 @@
             // 
             // tabUserManagement
             // 
-            this.tabUserManagement.BackgroundImage = global::PMC_Desktop.Properties.Resources.Paschal_P_30;
+            this.tabUserManagement.BackgroundImage = global::PMC_Desktop.Properties.Resources.Paschal_P_15;
             this.tabUserManagement.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.tabUserManagement.Controls.Add(this.buttonUMReloadUserList);
             this.tabUserManagement.Controls.Add(this.buttonUMShowEmployeeNumber);

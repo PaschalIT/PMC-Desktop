@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Text;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -11,11 +10,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PMC_Desktop {
-    public partial class Plexiglass : Form {
-        public Plexiglass (Form tocover) {
+    public partial class formProgress : Form {
+        public formProgress (Form tocover) {
             InitializeComponent ();
-            BackColor = Color.DarkGray;
-            Opacity = 0.60;
+            circProgressLoading.Text = "Creating\r\nsearcher objects...";
+            circProgressLoading.Value = 0;
+
+            BackColor = SystemColors.ControlLightLight;
             FormBorderStyle = FormBorderStyle.None;
             ControlBox = false;
             ShowInTaskbar = false;
@@ -59,5 +60,49 @@ namespace PMC_Desktop {
         private const int DWMWA_TRANSITIONS_FORCEDISABLED = 3;
         [DllImport ("dwmapi.dll")]
         private static extern int DwmSetWindowAttribute (IntPtr hWnd, int attr, ref int value, int attrLen);
+
+        public string ProgressText {
+            get {
+                return circProgressLoading.Text;
+            }
+            set {
+                circProgressLoading.Text = value;
+                circProgressLoading.Refresh ();
+            }
+        }
+
+        public int ProgressMaximum {
+            get {
+                return circProgressLoading.Maximum;
+            }
+            set {
+                circProgressLoading.Maximum = value;
+                circProgressLoading.Value = 0;
+                circProgressLoading.Step = 1;
+                circProgressLoading.Refresh ();
+            }
+        }
+
+        public void ProgressRefresh () {
+            circProgressLoading.Refresh ();
+        }
+
+        public void ProgressShow () {
+            circProgressLoading.Visible = true;
+            this.Refresh ();
+            ProgressRefresh ();
+        }
+
+        public void ProgressHide () {
+            circProgressLoading.Visible = false;
+            ProgressRefresh ();
+        }
+
+        public void ProgressStep () {
+            circProgressLoading.PerformStep ();
+            circProgressLoading.Value--;
+            circProgressLoading.Value++;
+            circProgressLoading.Refresh ();
+        }
     }
 }

@@ -66,12 +66,16 @@ namespace PMC_Desktop {
         private void formPMC_Shown (object sender, EventArgs e) {
             Refresh ();
             Plexiglass cover = new Plexiglass (this);
+            formProgress progress = new formProgress (this);
             cover.Show ();
             cover.Refresh ();
-            ADS.UpdateUsernameLists (cover);
+            progress.Show ();
+            progress.Refresh ();
+            ADS.UpdateUsernameLists (progress);
             comboUMUserSelect.DataSource = ADS.PopulateUserList (checkUMTerminatedUsers.Checked);
             comboUMUserSelect.SelectedIndex = -1;
             cover.Close ();
+            progress.Close ();
         }
 
         private void buttonUMShowEmployeeNumber_Click (object sender, EventArgs e) {
@@ -86,12 +90,16 @@ namespace PMC_Desktop {
 
         private void buttonUMReloadUserList_Click (object sender, EventArgs e) {
             Plexiglass cover = new Plexiglass (this);
+            formProgress progress = new formProgress (this);
             cover.Show ();
             cover.Refresh ();
-            ADS.UpdateUsernameLists (cover);
+            progress.Show ();
+            progress.Refresh ();
+            ADS.UpdateUsernameLists (progress);
             comboUMUserSelect.DataSource = ADS.PopulateUserList (checkUMTerminatedUsers.Checked);
             comboUMUserSelect.SelectedIndex = -1;
             cover.Close ();
+            progress.Close ();
         }
     }
 }

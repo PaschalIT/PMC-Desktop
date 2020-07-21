@@ -94,6 +94,12 @@
     <Compile Include="formPMC.Designer.cs">
       <DependentUpon>formPMC.cs</DependentUpon>
     </Compile>
+    <Compile Include="formProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formProgress.Designer.cs">
+      <DependentUpon>formProgress.cs</DependentUpon>
+    </Compile>
     <Compile Include="Plexiglass.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="formPMC.resx">
       <DependentUpon>formPMC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formProgress.resx">
+      <DependentUpon>formProgress.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Plexiglass.resx">
       <DependentUpon>Plexiglass.cs</DependentUpon>

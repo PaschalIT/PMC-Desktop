@@ -17,10 +17,8 @@ namespace PMC_Desktop {
         public static List<string> UsernameList { get; set; }
         public static SearchResultCollection userListTerm = termSearcher.FindAll ();
         public static List<string> UsernameListTerm { get; set; }
-        public static void UpdateUsernameLists (Plexiglass cover) {
-            CircularProgressBar.CircularProgressBar progress = cover.Controls["circProgressLoading"]
-                                                               as CircularProgressBar.CircularProgressBar;
-            cover.ProgressMaximum = userList.Count;
+        public static void UpdateUsernameLists (formProgress cover) {
+            cover.ProgressMaximum = userList.Count + userListTerm.Count;
             cover.ProgressText = "Creating searcher objects...";
             cover.Refresh ();
             cover.ProgressRefresh ();
@@ -31,23 +29,23 @@ namespace PMC_Desktop {
             Filter = "(objectClass=user)"
             };
 
-            cover.ProgressText = "Retrieving\r\nactive users...";
+            cover.ProgressText = "Retrieving\r\nActive Users...";
             UsernameList = new List<string> ();
             foreach (SearchResult res in userList) {
                 UsernameList.Add ((string)res.GetDirectoryEntry ().Properties["samaccountname"].Value);
                 cover.ProgressStep ();
             }
-            cover.ProgressText = "Sorting...";
+            //cover.ProgressText = "Sorting...";
             UsernameList.Sort ();
 
             cover.ProgressText = "Retrieving\r\nTerminated users...";
-            cover.ProgressMaximum = userListTerm.Count;
+            //cover.ProgressMaximum = userListTerm.Count;
             UsernameListTerm = new List<string> ();
             foreach (SearchResult res in userListTerm) {
                 UsernameListTerm.Add ((string)res.GetDirectoryEntry ().Properties["samaccountname"].Value);
                 cover.ProgressStep ();
             }
-            cover.ProgressText = "Sorting...";
+            //cover.ProgressText = "Sorting...";
             UsernameListTerm.Sort ();
         }
 
