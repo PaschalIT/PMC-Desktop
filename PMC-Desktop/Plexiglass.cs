@@ -14,6 +14,8 @@ namespace PMC_Desktop {
     public partial class Plexiglass : Form {
         public Plexiglass (Form tocover) {
             InitializeComponent ();
+            circProgressLoading.Text = "Creating\r\nsearcher objects...";
+            circProgressLoading.Value = 0;
             BackColor = Color.DarkGray;
             Opacity = 0.60;
             FormBorderStyle = FormBorderStyle.None;

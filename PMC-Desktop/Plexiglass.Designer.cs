@@ -56,7 +56,6 @@
             this.circProgressLoading.SuperscriptText = "";
             this.circProgressLoading.TabIndex = 0;
             this.circProgressLoading.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
-            this.circProgressLoading.Value = 68;
             // 
             // Plexiglass
             // 
