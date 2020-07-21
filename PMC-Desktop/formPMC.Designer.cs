@@ -26,6 +26,28 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formPMC));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabUserManagement = new System.Windows.Forms.TabPage();
+            this.buttonUMShowEmployeeNumber = new System.Windows.Forms.Button();
+            this.listUMUserHistory = new System.Windows.Forms.ListBox();
+            this.labelUMUserHistory = new System.Windows.Forms.Label();
+            this.buttonUMClearUserHistory = new System.Windows.Forms.Button();
+            this.labelUMLastModified = new System.Windows.Forms.Label();
+            this.labelUMDateOfTermination = new System.Windows.Forms.Label();
+            this.labelUMDateOfHire = new System.Windows.Forms.Label();
+            this.labelUMFailedLogons = new System.Windows.Forms.Label();
+            this.labelUMPassExpiration = new System.Windows.Forms.Label();
+            this.labelUMPassLastChanged = new System.Windows.Forms.Label();
+            this.labelUMEmployeeNumber = new System.Windows.Forms.Label();
+            this.labelUMEmployeeID = new System.Windows.Forms.Label();
+            this.labelUMLastLogon = new System.Windows.Forms.Label();
+            this.labelUMEnabled = new System.Windows.Forms.Label();
+            this.listUMDirectReports = new System.Windows.Forms.ListBox();
+            this.labelUMDirectReports = new System.Windows.Forms.Label();
+            this.labelUMManager = new System.Windows.Forms.Label();
+            this.labelUMTitle = new System.Windows.Forms.Label();
+            this.labelUMDepartment = new System.Windows.Forms.Label();
+            this.labelUMEmail = new System.Windows.Forms.Label();
+            this.labelUMUsername = new System.Windows.Forms.Label();
+            this.labelUMDisplayName = new System.Windows.Forms.Label();
             this.textUMLastModified = new System.Windows.Forms.TextBox();
             this.textUMDateOfTermination = new System.Windows.Forms.TextBox();
             this.textUMDateOfHire = new System.Windows.Forms.TextBox();
@@ -46,29 +68,6 @@
             this.textUMDisplayName = new System.Windows.Forms.TextBox();
             this.labelUMUserSelect = new System.Windows.Forms.Label();
             this.comboUMUserSelect = new System.Windows.Forms.ComboBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.labelUMDisplayName = new System.Windows.Forms.Label();
-            this.labelUMUsername = new System.Windows.Forms.Label();
-            this.labelUMEmail = new System.Windows.Forms.Label();
-            this.labelUMDepartment = new System.Windows.Forms.Label();
-            this.labelUMTitle = new System.Windows.Forms.Label();
-            this.labelUMManager = new System.Windows.Forms.Label();
-            this.labelUMDirectReports = new System.Windows.Forms.Label();
-            this.listUMDirectReports = new System.Windows.Forms.ListBox();
-            this.labelUMEnabled = new System.Windows.Forms.Label();
-            this.labelUMLastLogon = new System.Windows.Forms.Label();
-            this.labelUMEmployeeID = new System.Windows.Forms.Label();
-            this.labelUMEmployeeNumber = new System.Windows.Forms.Label();
-            this.labelUMPassLastChanged = new System.Windows.Forms.Label();
-            this.labelUMPassExpiration = new System.Windows.Forms.Label();
-            this.labelUMFailedLogons = new System.Windows.Forms.Label();
-            this.labelUMDateOfHire = new System.Windows.Forms.Label();
-            this.labelUMDateOfTermination = new System.Windows.Forms.Label();
-            this.labelUMLastModified = new System.Windows.Forms.Label();
-            this.buttonUMClearUserHistory = new System.Windows.Forms.Button();
-            this.labelUMUserHistory = new System.Windows.Forms.Label();
-            this.listUMUserHistory = new System.Windows.Forms.ListBox();
-            this.buttonUMShowEmployeeNumber = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabUserManagement.SuspendLayout();
             this.SuspendLayout();
@@ -79,7 +78,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabUserManagement);
-            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(8, 8);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
@@ -141,6 +139,203 @@
             this.tabUserManagement.TabIndex = 0;
             this.tabUserManagement.Text = "User Management";
             this.tabUserManagement.UseVisualStyleBackColor = true;
+            // 
+            // buttonUMShowEmployeeNumber
+            // 
+            this.buttonUMShowEmployeeNumber.Location = new System.Drawing.Point(786, 132);
+            this.buttonUMShowEmployeeNumber.Name = "buttonUMShowEmployeeNumber";
+            this.buttonUMShowEmployeeNumber.Size = new System.Drawing.Size(66, 22);
+            this.buttonUMShowEmployeeNumber.TabIndex = 42;
+            this.buttonUMShowEmployeeNumber.Text = "Show";
+            this.buttonUMShowEmployeeNumber.UseVisualStyleBackColor = true;
+            this.buttonUMShowEmployeeNumber.Click += new System.EventHandler(this.buttonUMShowEmployeeNumber_Click);
+            // 
+            // listUMUserHistory
+            // 
+            this.listUMUserHistory.FormattingEnabled = true;
+            this.listUMUserHistory.Location = new System.Drawing.Point(5, 55);
+            this.listUMUserHistory.Name = "listUMUserHistory";
+            this.listUMUserHistory.Size = new System.Drawing.Size(113, 446);
+            this.listUMUserHistory.TabIndex = 41;
+            // 
+            // labelUMUserHistory
+            // 
+            this.labelUMUserHistory.AutoSize = true;
+            this.labelUMUserHistory.Location = new System.Drawing.Point(5, 39);
+            this.labelUMUserHistory.Name = "labelUMUserHistory";
+            this.labelUMUserHistory.Size = new System.Drawing.Size(64, 13);
+            this.labelUMUserHistory.TabIndex = 40;
+            this.labelUMUserHistory.Text = "User History";
+            // 
+            // buttonUMClearUserHistory
+            // 
+            this.buttonUMClearUserHistory.Location = new System.Drawing.Point(5, 508);
+            this.buttonUMClearUserHistory.Name = "buttonUMClearUserHistory";
+            this.buttonUMClearUserHistory.Size = new System.Drawing.Size(113, 28);
+            this.buttonUMClearUserHistory.TabIndex = 39;
+            this.buttonUMClearUserHistory.Text = "Clear History";
+            this.buttonUMClearUserHistory.UseVisualStyleBackColor = true;
+            // 
+            // labelUMLastModified
+            // 
+            this.labelUMLastModified.AutoSize = true;
+            this.labelUMLastModified.Location = new System.Drawing.Point(470, 292);
+            this.labelUMLastModified.Name = "labelUMLastModified";
+            this.labelUMLastModified.Size = new System.Drawing.Size(70, 13);
+            this.labelUMLastModified.TabIndex = 37;
+            this.labelUMLastModified.Text = "Last Modified";
+            // 
+            // labelUMDateOfTermination
+            // 
+            this.labelUMDateOfTermination.AutoSize = true;
+            this.labelUMDateOfTermination.Location = new System.Drawing.Point(470, 266);
+            this.labelUMDateOfTermination.Name = "labelUMDateOfTermination";
+            this.labelUMDateOfTermination.Size = new System.Drawing.Size(100, 13);
+            this.labelUMDateOfTermination.TabIndex = 36;
+            this.labelUMDateOfTermination.Text = "Date of Termination";
+            // 
+            // labelUMDateOfHire
+            // 
+            this.labelUMDateOfHire.AutoSize = true;
+            this.labelUMDateOfHire.Location = new System.Drawing.Point(470, 240);
+            this.labelUMDateOfHire.Name = "labelUMDateOfHire";
+            this.labelUMDateOfHire.Size = new System.Drawing.Size(64, 13);
+            this.labelUMDateOfHire.TabIndex = 35;
+            this.labelUMDateOfHire.Text = "Date of Hire";
+            // 
+            // labelUMFailedLogons
+            // 
+            this.labelUMFailedLogons.AutoSize = true;
+            this.labelUMFailedLogons.Location = new System.Drawing.Point(470, 214);
+            this.labelUMFailedLogons.Name = "labelUMFailedLogons";
+            this.labelUMFailedLogons.Size = new System.Drawing.Size(73, 13);
+            this.labelUMFailedLogons.TabIndex = 34;
+            this.labelUMFailedLogons.Text = "Failed Logons";
+            // 
+            // labelUMPassExpiration
+            // 
+            this.labelUMPassExpiration.AutoSize = true;
+            this.labelUMPassExpiration.Location = new System.Drawing.Point(470, 188);
+            this.labelUMPassExpiration.Name = "labelUMPassExpiration";
+            this.labelUMPassExpiration.Size = new System.Drawing.Size(79, 13);
+            this.labelUMPassExpiration.TabIndex = 33;
+            this.labelUMPassExpiration.Text = "Pass Expiration";
+            // 
+            // labelUMPassLastChanged
+            // 
+            this.labelUMPassLastChanged.AutoSize = true;
+            this.labelUMPassLastChanged.Location = new System.Drawing.Point(470, 162);
+            this.labelUMPassLastChanged.Name = "labelUMPassLastChanged";
+            this.labelUMPassLastChanged.Size = new System.Drawing.Size(99, 13);
+            this.labelUMPassLastChanged.TabIndex = 32;
+            this.labelUMPassLastChanged.Text = "Pass Last Changed";
+            // 
+            // labelUMEmployeeNumber
+            // 
+            this.labelUMEmployeeNumber.AutoSize = true;
+            this.labelUMEmployeeNumber.Location = new System.Drawing.Point(470, 136);
+            this.labelUMEmployeeNumber.Name = "labelUMEmployeeNumber";
+            this.labelUMEmployeeNumber.Size = new System.Drawing.Size(93, 13);
+            this.labelUMEmployeeNumber.TabIndex = 31;
+            this.labelUMEmployeeNumber.Text = "Employee Number";
+            // 
+            // labelUMEmployeeID
+            // 
+            this.labelUMEmployeeID.AutoSize = true;
+            this.labelUMEmployeeID.Location = new System.Drawing.Point(470, 110);
+            this.labelUMEmployeeID.Name = "labelUMEmployeeID";
+            this.labelUMEmployeeID.Size = new System.Drawing.Size(67, 13);
+            this.labelUMEmployeeID.TabIndex = 30;
+            this.labelUMEmployeeID.Text = "Employee ID";
+            // 
+            // labelUMLastLogon
+            // 
+            this.labelUMLastLogon.AutoSize = true;
+            this.labelUMLastLogon.Location = new System.Drawing.Point(470, 84);
+            this.labelUMLastLogon.Name = "labelUMLastLogon";
+            this.labelUMLastLogon.Size = new System.Drawing.Size(60, 13);
+            this.labelUMLastLogon.TabIndex = 29;
+            this.labelUMLastLogon.Text = "Last Logon";
+            // 
+            // labelUMEnabled
+            // 
+            this.labelUMEnabled.AutoSize = true;
+            this.labelUMEnabled.Location = new System.Drawing.Point(470, 58);
+            this.labelUMEnabled.Name = "labelUMEnabled";
+            this.labelUMEnabled.Size = new System.Drawing.Size(46, 13);
+            this.labelUMEnabled.TabIndex = 28;
+            this.labelUMEnabled.Text = "Enabled";
+            // 
+            // listUMDirectReports
+            // 
+            this.listUMDirectReports.FormattingEnabled = true;
+            this.listUMDirectReports.Location = new System.Drawing.Point(210, 211);
+            this.listUMDirectReports.Name = "listUMDirectReports";
+            this.listUMDirectReports.Size = new System.Drawing.Size(200, 186);
+            this.listUMDirectReports.TabIndex = 27;
+            // 
+            // labelUMDirectReports
+            // 
+            this.labelUMDirectReports.AutoSize = true;
+            this.labelUMDirectReports.Location = new System.Drawing.Point(124, 214);
+            this.labelUMDirectReports.Name = "labelUMDirectReports";
+            this.labelUMDirectReports.Size = new System.Drawing.Size(75, 13);
+            this.labelUMDirectReports.TabIndex = 26;
+            this.labelUMDirectReports.Text = "Direct Reports";
+            // 
+            // labelUMManager
+            // 
+            this.labelUMManager.AutoSize = true;
+            this.labelUMManager.Location = new System.Drawing.Point(124, 188);
+            this.labelUMManager.Name = "labelUMManager";
+            this.labelUMManager.Size = new System.Drawing.Size(49, 13);
+            this.labelUMManager.TabIndex = 25;
+            this.labelUMManager.Text = "Manager";
+            // 
+            // labelUMTitle
+            // 
+            this.labelUMTitle.AutoSize = true;
+            this.labelUMTitle.Location = new System.Drawing.Point(124, 162);
+            this.labelUMTitle.Name = "labelUMTitle";
+            this.labelUMTitle.Size = new System.Drawing.Size(27, 13);
+            this.labelUMTitle.TabIndex = 24;
+            this.labelUMTitle.Text = "Title";
+            // 
+            // labelUMDepartment
+            // 
+            this.labelUMDepartment.AutoSize = true;
+            this.labelUMDepartment.Location = new System.Drawing.Point(124, 136);
+            this.labelUMDepartment.Name = "labelUMDepartment";
+            this.labelUMDepartment.Size = new System.Drawing.Size(62, 13);
+            this.labelUMDepartment.TabIndex = 23;
+            this.labelUMDepartment.Text = "Department";
+            // 
+            // labelUMEmail
+            // 
+            this.labelUMEmail.AutoSize = true;
+            this.labelUMEmail.Location = new System.Drawing.Point(124, 110);
+            this.labelUMEmail.Name = "labelUMEmail";
+            this.labelUMEmail.Size = new System.Drawing.Size(32, 13);
+            this.labelUMEmail.TabIndex = 22;
+            this.labelUMEmail.Text = "Email";
+            // 
+            // labelUMUsername
+            // 
+            this.labelUMUsername.AutoSize = true;
+            this.labelUMUsername.Location = new System.Drawing.Point(124, 84);
+            this.labelUMUsername.Name = "labelUMUsername";
+            this.labelUMUsername.Size = new System.Drawing.Size(55, 13);
+            this.labelUMUsername.TabIndex = 21;
+            this.labelUMUsername.Text = "Username";
+            // 
+            // labelUMDisplayName
+            // 
+            this.labelUMDisplayName.AutoSize = true;
+            this.labelUMDisplayName.Location = new System.Drawing.Point(124, 57);
+            this.labelUMDisplayName.Name = "labelUMDisplayName";
+            this.labelUMDisplayName.Size = new System.Drawing.Size(35, 13);
+            this.labelUMDisplayName.TabIndex = 20;
+            this.labelUMDisplayName.Text = "Name";
             // 
             // textUMLastModified
             // 
@@ -295,215 +490,6 @@
             this.comboUMUserSelect.TabIndex = 0;
             this.comboUMUserSelect.SelectedIndexChanged += new System.EventHandler(this.comboUMUserSelect_SelectedIndexChanged);
             // 
-            // tabPage2
-            // 
-            this.tabPage2.BackgroundImage = global::PMC_Desktop.Properties.Resources.Paschal_P_30;
-            this.tabPage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Size = new System.Drawing.Size(857, 466);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // labelUMDisplayName
-            // 
-            this.labelUMDisplayName.AutoSize = true;
-            this.labelUMDisplayName.Location = new System.Drawing.Point(124, 57);
-            this.labelUMDisplayName.Name = "labelUMDisplayName";
-            this.labelUMDisplayName.Size = new System.Drawing.Size(35, 13);
-            this.labelUMDisplayName.TabIndex = 20;
-            this.labelUMDisplayName.Text = "Name";
-            // 
-            // labelUMUsername
-            // 
-            this.labelUMUsername.AutoSize = true;
-            this.labelUMUsername.Location = new System.Drawing.Point(124, 84);
-            this.labelUMUsername.Name = "labelUMUsername";
-            this.labelUMUsername.Size = new System.Drawing.Size(55, 13);
-            this.labelUMUsername.TabIndex = 21;
-            this.labelUMUsername.Text = "Username";
-            // 
-            // labelUMEmail
-            // 
-            this.labelUMEmail.AutoSize = true;
-            this.labelUMEmail.Location = new System.Drawing.Point(124, 110);
-            this.labelUMEmail.Name = "labelUMEmail";
-            this.labelUMEmail.Size = new System.Drawing.Size(32, 13);
-            this.labelUMEmail.TabIndex = 22;
-            this.labelUMEmail.Text = "Email";
-            // 
-            // labelUMDepartment
-            // 
-            this.labelUMDepartment.AutoSize = true;
-            this.labelUMDepartment.Location = new System.Drawing.Point(124, 136);
-            this.labelUMDepartment.Name = "labelUMDepartment";
-            this.labelUMDepartment.Size = new System.Drawing.Size(62, 13);
-            this.labelUMDepartment.TabIndex = 23;
-            this.labelUMDepartment.Text = "Department";
-            // 
-            // labelUMTitle
-            // 
-            this.labelUMTitle.AutoSize = true;
-            this.labelUMTitle.Location = new System.Drawing.Point(124, 162);
-            this.labelUMTitle.Name = "labelUMTitle";
-            this.labelUMTitle.Size = new System.Drawing.Size(27, 13);
-            this.labelUMTitle.TabIndex = 24;
-            this.labelUMTitle.Text = "Title";
-            // 
-            // labelUMManager
-            // 
-            this.labelUMManager.AutoSize = true;
-            this.labelUMManager.Location = new System.Drawing.Point(124, 188);
-            this.labelUMManager.Name = "labelUMManager";
-            this.labelUMManager.Size = new System.Drawing.Size(49, 13);
-            this.labelUMManager.TabIndex = 25;
-            this.labelUMManager.Text = "Manager";
-            // 
-            // labelUMDirectReports
-            // 
-            this.labelUMDirectReports.AutoSize = true;
-            this.labelUMDirectReports.Location = new System.Drawing.Point(124, 214);
-            this.labelUMDirectReports.Name = "labelUMDirectReports";
-            this.labelUMDirectReports.Size = new System.Drawing.Size(75, 13);
-            this.labelUMDirectReports.TabIndex = 26;
-            this.labelUMDirectReports.Text = "Direct Reports";
-            // 
-            // listUMDirectReports
-            // 
-            this.listUMDirectReports.FormattingEnabled = true;
-            this.listUMDirectReports.Location = new System.Drawing.Point(210, 211);
-            this.listUMDirectReports.Name = "listUMDirectReports";
-            this.listUMDirectReports.Size = new System.Drawing.Size(200, 186);
-            this.listUMDirectReports.TabIndex = 27;
-            // 
-            // labelUMEnabled
-            // 
-            this.labelUMEnabled.AutoSize = true;
-            this.labelUMEnabled.Location = new System.Drawing.Point(470, 58);
-            this.labelUMEnabled.Name = "labelUMEnabled";
-            this.labelUMEnabled.Size = new System.Drawing.Size(46, 13);
-            this.labelUMEnabled.TabIndex = 28;
-            this.labelUMEnabled.Text = "Enabled";
-            // 
-            // labelUMLastLogon
-            // 
-            this.labelUMLastLogon.AutoSize = true;
-            this.labelUMLastLogon.Location = new System.Drawing.Point(470, 84);
-            this.labelUMLastLogon.Name = "labelUMLastLogon";
-            this.labelUMLastLogon.Size = new System.Drawing.Size(60, 13);
-            this.labelUMLastLogon.TabIndex = 29;
-            this.labelUMLastLogon.Text = "Last Logon";
-            // 
-            // labelUMEmployeeID
-            // 
-            this.labelUMEmployeeID.AutoSize = true;
-            this.labelUMEmployeeID.Location = new System.Drawing.Point(470, 110);
-            this.labelUMEmployeeID.Name = "labelUMEmployeeID";
-            this.labelUMEmployeeID.Size = new System.Drawing.Size(67, 13);
-            this.labelUMEmployeeID.TabIndex = 30;
-            this.labelUMEmployeeID.Text = "Employee ID";
-            // 
-            // labelUMEmployeeNumber
-            // 
-            this.labelUMEmployeeNumber.AutoSize = true;
-            this.labelUMEmployeeNumber.Location = new System.Drawing.Point(470, 136);
-            this.labelUMEmployeeNumber.Name = "labelUMEmployeeNumber";
-            this.labelUMEmployeeNumber.Size = new System.Drawing.Size(93, 13);
-            this.labelUMEmployeeNumber.TabIndex = 31;
-            this.labelUMEmployeeNumber.Text = "Employee Number";
-            // 
-            // labelUMPassLastChanged
-            // 
-            this.labelUMPassLastChanged.AutoSize = true;
-            this.labelUMPassLastChanged.Location = new System.Drawing.Point(470, 162);
-            this.labelUMPassLastChanged.Name = "labelUMPassLastChanged";
-            this.labelUMPassLastChanged.Size = new System.Drawing.Size(99, 13);
-            this.labelUMPassLastChanged.TabIndex = 32;
-            this.labelUMPassLastChanged.Text = "Pass Last Changed";
-            // 
-            // labelUMPassExpiration
-            // 
-            this.labelUMPassExpiration.AutoSize = true;
-            this.labelUMPassExpiration.Location = new System.Drawing.Point(470, 188);
-            this.labelUMPassExpiration.Name = "labelUMPassExpiration";
-            this.labelUMPassExpiration.Size = new System.Drawing.Size(79, 13);
-            this.labelUMPassExpiration.TabIndex = 33;
-            this.labelUMPassExpiration.Text = "Pass Expiration";
-            // 
-            // labelUMFailedLogons
-            // 
-            this.labelUMFailedLogons.AutoSize = true;
-            this.labelUMFailedLogons.Location = new System.Drawing.Point(470, 214);
-            this.labelUMFailedLogons.Name = "labelUMFailedLogons";
-            this.labelUMFailedLogons.Size = new System.Drawing.Size(73, 13);
-            this.labelUMFailedLogons.TabIndex = 34;
-            this.labelUMFailedLogons.Text = "Failed Logons";
-            // 
-            // labelUMDateOfHire
-            // 
-            this.labelUMDateOfHire.AutoSize = true;
-            this.labelUMDateOfHire.Location = new System.Drawing.Point(470, 240);
-            this.labelUMDateOfHire.Name = "labelUMDateOfHire";
-            this.labelUMDateOfHire.Size = new System.Drawing.Size(64, 13);
-            this.labelUMDateOfHire.TabIndex = 35;
-            this.labelUMDateOfHire.Text = "Date of Hire";
-            // 
-            // labelUMDateOfTermination
-            // 
-            this.labelUMDateOfTermination.AutoSize = true;
-            this.labelUMDateOfTermination.Location = new System.Drawing.Point(470, 266);
-            this.labelUMDateOfTermination.Name = "labelUMDateOfTermination";
-            this.labelUMDateOfTermination.Size = new System.Drawing.Size(100, 13);
-            this.labelUMDateOfTermination.TabIndex = 36;
-            this.labelUMDateOfTermination.Text = "Date of Termination";
-            // 
-            // labelUMLastModified
-            // 
-            this.labelUMLastModified.AutoSize = true;
-            this.labelUMLastModified.Location = new System.Drawing.Point(470, 292);
-            this.labelUMLastModified.Name = "labelUMLastModified";
-            this.labelUMLastModified.Size = new System.Drawing.Size(70, 13);
-            this.labelUMLastModified.TabIndex = 37;
-            this.labelUMLastModified.Text = "Last Modified";
-            // 
-            // buttonUMClearUserHistory
-            // 
-            this.buttonUMClearUserHistory.Location = new System.Drawing.Point(5, 508);
-            this.buttonUMClearUserHistory.Name = "buttonUMClearUserHistory";
-            this.buttonUMClearUserHistory.Size = new System.Drawing.Size(113, 28);
-            this.buttonUMClearUserHistory.TabIndex = 39;
-            this.buttonUMClearUserHistory.Text = "Clear History";
-            this.buttonUMClearUserHistory.UseVisualStyleBackColor = true;
-            // 
-            // labelUMUserHistory
-            // 
-            this.labelUMUserHistory.AutoSize = true;
-            this.labelUMUserHistory.Location = new System.Drawing.Point(5, 39);
-            this.labelUMUserHistory.Name = "labelUMUserHistory";
-            this.labelUMUserHistory.Size = new System.Drawing.Size(64, 13);
-            this.labelUMUserHistory.TabIndex = 40;
-            this.labelUMUserHistory.Text = "User History";
-            // 
-            // listUMUserHistory
-            // 
-            this.listUMUserHistory.FormattingEnabled = true;
-            this.listUMUserHistory.Location = new System.Drawing.Point(5, 55);
-            this.listUMUserHistory.Name = "listUMUserHistory";
-            this.listUMUserHistory.Size = new System.Drawing.Size(113, 446);
-            this.listUMUserHistory.TabIndex = 41;
-            // 
-            // buttonUMShowEmployeeNumber
-            // 
-            this.buttonUMShowEmployeeNumber.Location = new System.Drawing.Point(786, 132);
-            this.buttonUMShowEmployeeNumber.Name = "buttonUMShowEmployeeNumber";
-            this.buttonUMShowEmployeeNumber.Size = new System.Drawing.Size(66, 22);
-            this.buttonUMShowEmployeeNumber.TabIndex = 42;
-            this.buttonUMShowEmployeeNumber.Text = "Show";
-            this.buttonUMShowEmployeeNumber.UseVisualStyleBackColor = true;
-            // 
             // formPMC
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -518,6 +504,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PMC";
             this.Load += new System.EventHandler(this.formPMC_Load);
+            this.Shown += new System.EventHandler(this.formPMC_Shown);
             this.tabControl1.ResumeLayout(false);
             this.tabUserManagement.ResumeLayout(false);
             this.tabUserManagement.PerformLayout();
@@ -529,7 +516,6 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabUserManagement;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ComboBox comboUMUserSelect;
         private System.Windows.Forms.Label labelUMUserSelect;
         private System.Windows.Forms.TextBox textUMDisplayName;

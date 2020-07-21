@@ -19,9 +19,6 @@ namespace PMC_Desktop {
         }
 
         private void formPMC_Load (object sender, EventArgs e) {
-            ADS.UpdateUsernameLists ();
-            comboUMUserSelect.DataSource = ADS.PopulateUserList (checkUMTerminatedUsers.Checked);
-            comboUMUserSelect.SelectedIndex = -1;
             foreach (TextBox control in tabUserManagement.Controls.OfType<TextBox> ()) {
                 control.ReadOnly = true;
                 control.BackColor = SystemColors.ControlLightLight;
@@ -63,6 +60,23 @@ namespace PMC_Desktop {
         private void ClearUM () {
             foreach (Control control in tabUserManagement.Controls.OfType<TextBox> ()) {
                 control.Text = null;
+            }
+        }
+
+        private void formPMC_Shown (object sender, EventArgs e) {
+            Refresh ();
+            ADS.UpdateUsernameLists ();
+            comboUMUserSelect.DataSource = ADS.PopulateUserList (checkUMTerminatedUsers.Checked);
+            comboUMUserSelect.SelectedIndex = -1;
+        }
+
+        private void buttonUMShowEmployeeNumber_Click (object sender, EventArgs e) {
+            if (buttonUMShowEmployeeNumber.Text == "Show") {
+                textUMEmployeeNumber.UseSystemPasswordChar = false;
+                buttonUMShowEmployeeNumber.Text = "Hide";
+            } else {
+                textUMEmployeeNumber.UseSystemPasswordChar = true;
+                buttonUMShowEmployeeNumber.Text = "Show";
             }
         }
     }
