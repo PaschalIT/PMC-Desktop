@@ -65,9 +65,13 @@ namespace PMC_Desktop {
 
         private void formPMC_Shown (object sender, EventArgs e) {
             Refresh ();
-            ADS.UpdateUsernameLists ();
+            Plexiglass cover = new Plexiglass (this);
+            cover.Show ();
+            cover.Refresh ();
+            ADS.UpdateUsernameLists (cover);
             comboUMUserSelect.DataSource = ADS.PopulateUserList (checkUMTerminatedUsers.Checked);
             comboUMUserSelect.SelectedIndex = -1;
+            cover.Close ();
         }
 
         private void buttonUMShowEmployeeNumber_Click (object sender, EventArgs e) {
@@ -78,6 +82,16 @@ namespace PMC_Desktop {
                 textUMEmployeeNumber.UseSystemPasswordChar = true;
                 buttonUMShowEmployeeNumber.Text = "Show";
             }
+        }
+
+        private void buttonUMReloadUserList_Click (object sender, EventArgs e) {
+            Plexiglass cover = new Plexiglass (this);
+            cover.Show ();
+            cover.Refresh ();
+            ADS.UpdateUsernameLists (cover);
+            comboUMUserSelect.DataSource = ADS.PopulateUserList (checkUMTerminatedUsers.Checked);
+            comboUMUserSelect.SelectedIndex = -1;
+            cover.Close ();
         }
     }
 }

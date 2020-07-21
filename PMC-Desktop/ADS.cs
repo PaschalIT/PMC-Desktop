@@ -1,11 +1,7 @@
-﻿using System;
+﻿using CircularProgressBar;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.DirectoryServices;
-using System.Windows.Forms;
-using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 
 namespace PMC_Desktop {
@@ -21,7 +17,13 @@ namespace PMC_Desktop {
         public static List<string> UsernameList { get; set; }
         public static SearchResultCollection userListTerm = termSearcher.FindAll ();
         public static List<string> UsernameListTerm { get; set; }
-        public static void UpdateUsernameLists () {
+        public static void UpdateUsernameLists (Plexiglass cover) {
+            CircularProgressBar.CircularProgressBar progress = cover.Controls["circProgressLoading"]
+                                                               as CircularProgressBar.CircularProgressBar;
+            cover.ProgressMaximum = userList.Count;
+            cover.ProgressText = "Creating searcher objects...";
+            cover.Refresh ();
+            cover.ProgressRefresh ();
             searcher = new DirectorySearcher (new DirectoryEntry ("LDAP://OU=Users, OU=Springdale, DC=US, DC=PaschalCorp, DC=com")) {
                 Filter = "(objectClass=user)"
             };
@@ -29,15 +31,23 @@ namespace PMC_Desktop {
             Filter = "(objectClass=user)"
             };
 
+            cover.ProgressText = "Retrieving\r\nactive users...";
             UsernameList = new List<string> ();
             foreach (SearchResult res in userList) {
                 UsernameList.Add ((string)res.GetDirectoryEntry ().Properties["samaccountname"].Value);
+                cover.ProgressStep ();
             }
+            cover.ProgressText = "Sorting...";
             UsernameList.Sort ();
+
+            cover.ProgressText = "Retrieving\r\nTerminated users...";
+            cover.ProgressMaximum = userListTerm.Count;
             UsernameListTerm = new List<string> ();
             foreach (SearchResult res in userListTerm) {
                 UsernameListTerm.Add ((string)res.GetDirectoryEntry ().Properties["samaccountname"].Value);
+                cover.ProgressStep ();
             }
+            cover.ProgressText = "Sorting...";
             UsernameListTerm.Sort ();
         }
 

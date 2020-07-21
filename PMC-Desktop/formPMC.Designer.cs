@@ -68,6 +68,7 @@
             this.textUMDisplayName = new System.Windows.Forms.TextBox();
             this.labelUMUserSelect = new System.Windows.Forms.Label();
             this.comboUMUserSelect = new System.Windows.Forms.ComboBox();
+            this.buttonUMReloadUserList = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabUserManagement.SuspendLayout();
             this.SuspendLayout();
@@ -89,6 +90,7 @@
             // 
             this.tabUserManagement.BackgroundImage = global::PMC_Desktop.Properties.Resources.Paschal_P_30;
             this.tabUserManagement.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.tabUserManagement.Controls.Add(this.buttonUMReloadUserList);
             this.tabUserManagement.Controls.Add(this.buttonUMShowEmployeeNumber);
             this.tabUserManagement.Controls.Add(this.listUMUserHistory);
             this.tabUserManagement.Controls.Add(this.labelUMUserHistory);
@@ -490,6 +492,16 @@
             this.comboUMUserSelect.TabIndex = 0;
             this.comboUMUserSelect.SelectedIndexChanged += new System.EventHandler(this.comboUMUserSelect_SelectedIndexChanged);
             // 
+            // buttonUMReloadUserList
+            // 
+            this.buttonUMReloadUserList.Location = new System.Drawing.Point(466, 4);
+            this.buttonUMReloadUserList.Name = "buttonUMReloadUserList";
+            this.buttonUMReloadUserList.Size = new System.Drawing.Size(97, 23);
+            this.buttonUMReloadUserList.TabIndex = 43;
+            this.buttonUMReloadUserList.Text = "Reload User List";
+            this.buttonUMReloadUserList.UseVisualStyleBackColor = true;
+            this.buttonUMReloadUserList.Click += new System.EventHandler(this.buttonUMReloadUserList_Click);
+            // 
             // formPMC
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -558,6 +570,7 @@
         private System.Windows.Forms.Label labelUMEmail;
         private System.Windows.Forms.Label labelUMUsername;
         private System.Windows.Forms.Label labelUMDisplayName;
+        private System.Windows.Forms.Button buttonUMReloadUserList;
     }
 }
 
