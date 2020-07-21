@@ -16,7 +16,7 @@ namespace PMC_Desktop {
             circProgressLoading.Text = "Creating\r\nsearcher objects...";
             circProgressLoading.Value = 0;
 
-            BackColor = SystemColors.ControlLightLight;
+            BackColor = Color.Silver;
             FormBorderStyle = FormBorderStyle.None;
             ControlBox = false;
             ShowInTaskbar = false;

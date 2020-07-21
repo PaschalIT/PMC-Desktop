@@ -31,17 +31,17 @@
             this.circProgressLoading.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.Liner;
             this.circProgressLoading.AnimationSpeed = 500;
             this.circProgressLoading.BackColor = System.Drawing.Color.Transparent;
-            this.circProgressLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.circProgressLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.circProgressLoading.ForeColor = System.Drawing.Color.Black;
             this.circProgressLoading.InnerColor = System.Drawing.Color.Transparent;
             this.circProgressLoading.InnerMargin = 0;
-            this.circProgressLoading.InnerWidth = 0;
+            this.circProgressLoading.InnerWidth = -1;
             this.circProgressLoading.Location = new System.Drawing.Point(282, 133);
             this.circProgressLoading.MarqueeAnimationSpeed = 2000;
             this.circProgressLoading.Name = "circProgressLoading";
-            this.circProgressLoading.OuterColor = System.Drawing.Color.Black;
+            this.circProgressLoading.OuterColor = System.Drawing.Color.LightGray;
             this.circProgressLoading.OuterMargin = -26;
-            this.circProgressLoading.OuterWidth = 26;
+            this.circProgressLoading.OuterWidth = 30;
             this.circProgressLoading.ProgressColor = System.Drawing.Color.Cyan;
             this.circProgressLoading.ProgressWidth = 26;
             this.circProgressLoading.SecondaryFont = new System.Drawing.Font("Microsoft Sans Serif", 36F);
@@ -55,18 +55,18 @@
             this.circProgressLoading.SuperscriptMargin = new System.Windows.Forms.Padding(10, 35, 0, 0);
             this.circProgressLoading.SuperscriptText = "";
             this.circProgressLoading.TabIndex = 1;
-            this.circProgressLoading.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
+            this.circProgressLoading.TextMargin = new System.Windows.Forms.Padding(8, -15, 0, 0);
             // 
             // formProgress
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(884, 586);
             this.Controls.Add(this.circProgressLoading);
             this.Name = "formProgress";
             this.Text = "formProgress";
-            this.TransparencyKey = System.Drawing.SystemColors.ControlLightLight;
+            this.TransparencyKey = System.Drawing.Color.Silver;
             this.ResumeLayout(false);
 
         }
