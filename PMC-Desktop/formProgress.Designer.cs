@@ -33,7 +33,7 @@
             this.circProgressLoading.BackColor = System.Drawing.Color.Transparent;
             this.circProgressLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.circProgressLoading.ForeColor = System.Drawing.Color.Black;
-            this.circProgressLoading.InnerColor = System.Drawing.Color.Transparent;
+            this.circProgressLoading.InnerColor = System.Drawing.Color.LightGray;
             this.circProgressLoading.InnerMargin = 0;
             this.circProgressLoading.InnerWidth = -1;
             this.circProgressLoading.Location = new System.Drawing.Point(282, 133);
@@ -41,8 +41,8 @@
             this.circProgressLoading.Name = "circProgressLoading";
             this.circProgressLoading.OuterColor = System.Drawing.Color.LightGray;
             this.circProgressLoading.OuterMargin = -26;
-            this.circProgressLoading.OuterWidth = 30;
-            this.circProgressLoading.ProgressColor = System.Drawing.Color.Cyan;
+            this.circProgressLoading.OuterWidth = 0;
+            this.circProgressLoading.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(47)))), ((int)(((byte)(96)))));
             this.circProgressLoading.ProgressWidth = 26;
             this.circProgressLoading.SecondaryFont = new System.Drawing.Font("Microsoft Sans Serif", 36F);
             this.circProgressLoading.Size = new System.Drawing.Size(320, 320);
@@ -56,6 +56,7 @@
             this.circProgressLoading.SuperscriptText = "";
             this.circProgressLoading.TabIndex = 1;
             this.circProgressLoading.TextMargin = new System.Windows.Forms.Padding(8, -15, 0, 0);
+            this.circProgressLoading.Value = 68;
             // 
             // formProgress
             // 
