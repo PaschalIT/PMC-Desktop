@@ -26,6 +26,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formPMC));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabUserManagement = new System.Windows.Forms.TabPage();
+            this.buttonUMReloadUserList = new System.Windows.Forms.Button();
             this.buttonUMShowEmployeeNumber = new System.Windows.Forms.Button();
             this.listUMUserHistory = new System.Windows.Forms.ListBox();
             this.labelUMUserHistory = new System.Windows.Forms.Label();
@@ -68,7 +69,6 @@
             this.textUMDisplayName = new System.Windows.Forms.TextBox();
             this.labelUMUserSelect = new System.Windows.Forms.Label();
             this.comboUMUserSelect = new System.Windows.Forms.ComboBox();
-            this.buttonUMReloadUserList = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabUserManagement.SuspendLayout();
             this.SuspendLayout();
@@ -141,6 +141,16 @@
             this.tabUserManagement.TabIndex = 0;
             this.tabUserManagement.Text = "User Management";
             this.tabUserManagement.UseVisualStyleBackColor = true;
+            // 
+            // buttonUMReloadUserList
+            // 
+            this.buttonUMReloadUserList.Location = new System.Drawing.Point(466, 4);
+            this.buttonUMReloadUserList.Name = "buttonUMReloadUserList";
+            this.buttonUMReloadUserList.Size = new System.Drawing.Size(97, 23);
+            this.buttonUMReloadUserList.TabIndex = 43;
+            this.buttonUMReloadUserList.Text = "Reload User List";
+            this.buttonUMReloadUserList.UseVisualStyleBackColor = true;
+            this.buttonUMReloadUserList.Click += new System.EventHandler(this.buttonUMReloadUserList_Click);
             // 
             // buttonUMShowEmployeeNumber
             // 
@@ -491,16 +501,6 @@
             this.comboUMUserSelect.Size = new System.Drawing.Size(250, 21);
             this.comboUMUserSelect.TabIndex = 0;
             this.comboUMUserSelect.SelectedIndexChanged += new System.EventHandler(this.comboUMUserSelect_SelectedIndexChanged);
-            // 
-            // buttonUMReloadUserList
-            // 
-            this.buttonUMReloadUserList.Location = new System.Drawing.Point(466, 4);
-            this.buttonUMReloadUserList.Name = "buttonUMReloadUserList";
-            this.buttonUMReloadUserList.Size = new System.Drawing.Size(97, 23);
-            this.buttonUMReloadUserList.TabIndex = 43;
-            this.buttonUMReloadUserList.Text = "Reload User List";
-            this.buttonUMReloadUserList.UseVisualStyleBackColor = true;
-            this.buttonUMReloadUserList.Click += new System.EventHandler(this.buttonUMReloadUserList_Click);
             // 
             // formPMC
             // 
