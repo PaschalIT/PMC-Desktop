@@ -69,6 +69,7 @@
             this.textUMDisplayName = new System.Windows.Forms.TextBox();
             this.labelUMUserSelect = new System.Windows.Forms.Label();
             this.comboUMUserSelect = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabUserManagement.SuspendLayout();
             this.SuspendLayout();
@@ -502,10 +503,20 @@
             this.comboUMUserSelect.TabIndex = 0;
             this.comboUMUserSelect.SelectedIndexChanged += new System.EventHandler(this.comboUMUserSelect_SelectedIndexChanged);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 573);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "label1";
+            // 
             // formPMC
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(884, 586);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -521,6 +532,7 @@
             this.tabUserManagement.ResumeLayout(false);
             this.tabUserManagement.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -571,6 +583,7 @@
         private System.Windows.Forms.Label labelUMUsername;
         private System.Windows.Forms.Label labelUMDisplayName;
         private System.Windows.Forms.Button buttonUMReloadUserList;
+        private System.Windows.Forms.Label label1;
     }
 }
 

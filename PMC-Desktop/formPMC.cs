@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.DirectoryServices;
 using System.Runtime.InteropServices;
+using System.Deployment.Application;
+using System.IO;
 
 namespace PMC_Desktop {
     public partial class formPMC : Form {
@@ -24,6 +26,16 @@ namespace PMC_Desktop {
                 control.BackColor = SystemColors.ControlLightLight;
                 control.ForeColor = Color.Black;
             }
+            label1.Text = "PMC v";
+            //if (ApplicationDeployment.IsNetworkDeployed) {
+            //    label1.Text += string.Format ("{0}", ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString ());
+            //} else {
+            //    label1.Text += "Debug";
+            //}
+            string path = @"\\WFS01V\Groups\IT\Development\PMC_Desktop\Application Files\";
+            DirectoryInfo folder = new DirectoryInfo (path).GetDirectories ().OrderByDescending (d => d.LastWriteTimeUtc).First ();
+            string[] items = folder.Name.Split ('_');
+            label1.Text += $"{items[1]}.{items[2]}.{items[3]}.{items[4]}";
         }
 
         private void checkUMTerminatedUsers_CheckedChanged (object sender, EventArgs e) {
