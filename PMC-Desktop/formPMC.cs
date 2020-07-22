@@ -11,6 +11,7 @@ using System.DirectoryServices;
 using System.Runtime.InteropServices;
 using System.Deployment.Application;
 using System.IO;
+using System.DirectoryServices.AccountManagement;
 
 namespace PMC_Desktop {
     public partial class formPMC : Form {
@@ -112,6 +113,35 @@ namespace PMC_Desktop {
             comboUMUserSelect.SelectedIndex = -1;
             cover.Close ();
             progress.Close ();
+        }
+
+        private void buttonUMUnlockAccount_Click (object sender, EventArgs e) {
+            if (CurrentUser != null) {
+                if (CurrentUser.userTools.IsAccountLockedOut ()) {
+                    try {
+                        CurrentUser.userTools.UnlockAccount ();
+                        MessageBox.Show ("User account unlocked.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    } catch {
+                        MessageBox.Show ("Could not unlock user account.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                } else {
+                    MessageBox.Show ("User account not locked.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void buttonUMResetPassword_Click (object sender, EventArgs e) {
+            if (CurrentUser != null) {
+                try {
+                    using (InputBox Input = new InputBox ()) {
+                        if (Input.ShowDialog () == DialogResult.OK) {
+                            string NewPass = Input.textInput.Text;
+                        }
+                    }
+                } catch {
+                    
+                }
+            }
         }
     }
 }

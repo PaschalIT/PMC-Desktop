@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.DirectoryServices;
+using System.DirectoryServices.AccountManagement;
 using System.Text.RegularExpressions;
 
 namespace PMC_Desktop {
@@ -135,6 +136,10 @@ namespace PMC_Desktop {
         }
 
         private SearchResult CurrentUser;
+        public UserPrincipal userTools
+            => CurrentUser != null && CurrentUser.Properties["samaccountname"].Count > 0
+            ? UserPrincipal.FindByIdentity (new PrincipalContext (ContextType.Domain), CurrentUser.Properties["samaccountname"][0].ToString ())
+            : null;
         public string Name
             => CurrentUser != null && CurrentUser.Properties["displayname"].Count > 0
             ? CurrentUser.Properties["displayname"][0].ToString ()
@@ -209,5 +214,7 @@ namespace PMC_Desktop {
             : new List<string> () {
                 "N/A"
             };
+        public bool IsLocked
+            => CurrentUser != null && userTools.IsAccountLockedOut ();
     }
 }

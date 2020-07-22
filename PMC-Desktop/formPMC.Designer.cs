@@ -70,6 +70,8 @@
             this.labelUMUserSelect = new System.Windows.Forms.Label();
             this.comboUMUserSelect = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.buttonUMUnlockAccount = new System.Windows.Forms.Button();
+            this.buttonUMResetPassword = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabUserManagement.SuspendLayout();
             this.SuspendLayout();
@@ -91,6 +93,8 @@
             // 
             this.tabUserManagement.BackgroundImage = global::PMC_Desktop.Properties.Resources.Paschal_P_15;
             this.tabUserManagement.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.tabUserManagement.Controls.Add(this.buttonUMResetPassword);
+            this.tabUserManagement.Controls.Add(this.buttonUMUnlockAccount);
             this.tabUserManagement.Controls.Add(this.buttonUMReloadUserList);
             this.tabUserManagement.Controls.Add(this.buttonUMShowEmployeeNumber);
             this.tabUserManagement.Controls.Add(this.listUMUserHistory);
@@ -512,6 +516,26 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "label1";
             // 
+            // buttonUMUnlockAccount
+            // 
+            this.buttonUMUnlockAccount.Location = new System.Drawing.Point(683, 315);
+            this.buttonUMUnlockAccount.Name = "buttonUMUnlockAccount";
+            this.buttonUMUnlockAccount.Size = new System.Drawing.Size(97, 23);
+            this.buttonUMUnlockAccount.TabIndex = 44;
+            this.buttonUMUnlockAccount.Text = "Unlock Account";
+            this.buttonUMUnlockAccount.UseVisualStyleBackColor = true;
+            this.buttonUMUnlockAccount.Click += new System.EventHandler(this.buttonUMUnlockAccount_Click);
+            // 
+            // buttonUMResetPassword
+            // 
+            this.buttonUMResetPassword.Location = new System.Drawing.Point(580, 315);
+            this.buttonUMResetPassword.Name = "buttonUMResetPassword";
+            this.buttonUMResetPassword.Size = new System.Drawing.Size(97, 23);
+            this.buttonUMResetPassword.TabIndex = 45;
+            this.buttonUMResetPassword.Text = "Reset Password";
+            this.buttonUMResetPassword.UseVisualStyleBackColor = true;
+            this.buttonUMResetPassword.Click += new System.EventHandler(this.buttonUMResetPassword_Click);
+            // 
             // formPMC
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -584,6 +608,8 @@
         private System.Windows.Forms.Label labelUMDisplayName;
         private System.Windows.Forms.Button buttonUMReloadUserList;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonUMResetPassword;
+        private System.Windows.Forms.Button buttonUMUnlockAccount;
     }
 }
 
