@@ -26,6 +26,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formPMC));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabUserManagement = new System.Windows.Forms.TabPage();
+            this.buttonUMResetPassword = new System.Windows.Forms.Button();
+            this.buttonUMUnlockAccount = new System.Windows.Forms.Button();
             this.buttonUMReloadUserList = new System.Windows.Forms.Button();
             this.buttonUMShowEmployeeNumber = new System.Windows.Forms.Button();
             this.listUMUserHistory = new System.Windows.Forms.ListBox();
@@ -70,8 +72,6 @@
             this.labelUMUserSelect = new System.Windows.Forms.Label();
             this.comboUMUserSelect = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonUMUnlockAccount = new System.Windows.Forms.Button();
-            this.buttonUMResetPassword = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabUserManagement.SuspendLayout();
             this.SuspendLayout();
@@ -146,6 +146,26 @@
             this.tabUserManagement.TabIndex = 0;
             this.tabUserManagement.Text = "User Management";
             this.tabUserManagement.UseVisualStyleBackColor = true;
+            // 
+            // buttonUMResetPassword
+            // 
+            this.buttonUMResetPassword.Location = new System.Drawing.Point(580, 315);
+            this.buttonUMResetPassword.Name = "buttonUMResetPassword";
+            this.buttonUMResetPassword.Size = new System.Drawing.Size(97, 23);
+            this.buttonUMResetPassword.TabIndex = 45;
+            this.buttonUMResetPassword.Text = "Reset Password";
+            this.buttonUMResetPassword.UseVisualStyleBackColor = true;
+            this.buttonUMResetPassword.Click += new System.EventHandler(this.buttonUMResetPassword_Click);
+            // 
+            // buttonUMUnlockAccount
+            // 
+            this.buttonUMUnlockAccount.Location = new System.Drawing.Point(683, 315);
+            this.buttonUMUnlockAccount.Name = "buttonUMUnlockAccount";
+            this.buttonUMUnlockAccount.Size = new System.Drawing.Size(97, 23);
+            this.buttonUMUnlockAccount.TabIndex = 44;
+            this.buttonUMUnlockAccount.Text = "Unlock Account";
+            this.buttonUMUnlockAccount.UseVisualStyleBackColor = true;
+            this.buttonUMUnlockAccount.Click += new System.EventHandler(this.buttonUMUnlockAccount_Click);
             // 
             // buttonUMReloadUserList
             // 
@@ -516,26 +536,6 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "label1";
             // 
-            // buttonUMUnlockAccount
-            // 
-            this.buttonUMUnlockAccount.Location = new System.Drawing.Point(683, 315);
-            this.buttonUMUnlockAccount.Name = "buttonUMUnlockAccount";
-            this.buttonUMUnlockAccount.Size = new System.Drawing.Size(97, 23);
-            this.buttonUMUnlockAccount.TabIndex = 44;
-            this.buttonUMUnlockAccount.Text = "Unlock Account";
-            this.buttonUMUnlockAccount.UseVisualStyleBackColor = true;
-            this.buttonUMUnlockAccount.Click += new System.EventHandler(this.buttonUMUnlockAccount_Click);
-            // 
-            // buttonUMResetPassword
-            // 
-            this.buttonUMResetPassword.Location = new System.Drawing.Point(580, 315);
-            this.buttonUMResetPassword.Name = "buttonUMResetPassword";
-            this.buttonUMResetPassword.Size = new System.Drawing.Size(97, 23);
-            this.buttonUMResetPassword.TabIndex = 45;
-            this.buttonUMResetPassword.Text = "Reset Password";
-            this.buttonUMResetPassword.UseVisualStyleBackColor = true;
-            this.buttonUMResetPassword.Click += new System.EventHandler(this.buttonUMResetPassword_Click);
-            // 
             // formPMC
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -544,6 +544,7 @@
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(900, 5000);
             this.MinimumSize = new System.Drawing.Size(900, 550);
@@ -552,6 +553,7 @@
             this.Text = "PMC";
             this.Load += new System.EventHandler(this.formPMC_Load);
             this.Shown += new System.EventHandler(this.formPMC_Shown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.formPMC_KeyDown);
             this.tabControl1.ResumeLayout(false);
             this.tabUserManagement.ResumeLayout(false);
             this.tabUserManagement.PerformLayout();

@@ -13,5 +13,11 @@ namespace PMC_Desktop {
         public InputBox () {
             InitializeComponent ();
         }
+
+        public string newPass {
+            get {
+                return textInput.Text;
+            }
+        }
     }
 }

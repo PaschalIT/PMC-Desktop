@@ -1,9 +1,12 @@
 ﻿using CircularProgressBar;
+using Ookii.Dialogs.WinForms;
 using System;
 using System.Collections.Generic;
 using System.DirectoryServices;
 using System.DirectoryServices.AccountManagement;
+using System.Net;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace PMC_Desktop {
     static class ADS {
@@ -14,6 +17,8 @@ namespace PMC_Desktop {
             Filter = "(objectClass=user)"
         };
 
+        public static NetworkCredential cred = null;
+        public static PrincipalContext context = new PrincipalContext (ContextType.Domain);
         public static SearchResultCollection userList = searcher.FindAll ();
         public static List<string> UsernameList { get; set; }
         public static SearchResultCollection userListTerm = termSearcher.FindAll ();
@@ -23,12 +28,10 @@ namespace PMC_Desktop {
             cover.ProgressText = "Creating searcher objects...";
             cover.Refresh ();
             cover.ProgressRefresh ();
-            searcher = new DirectorySearcher (new DirectoryEntry ("LDAP://OU=Users, OU=Springdale, DC=US, DC=PaschalCorp, DC=com")) {
-                Filter = "(objectClass=user)"
-            };
-            termSearcher = new DirectorySearcher (new DirectoryEntry ("LDAP://OU=Terminated, OU=Springdale, DC=US, DC=PaschalCorp, DC=com")) {
-            Filter = "(objectClass=user)"
-            };
+            searcher.SearchRoot.Path = "LDAP://OU=Users, OU=Springdale, DC=US, DC=PaschalCorp, DC=com";
+            searcher.Filter = "(objectClass=user)";
+            termSearcher.SearchRoot.Path = "LDAP://OU=Terminated, OU=Springdale, DC=US, DC=PaschalCorp, DC=com";
+            termSearcher.Filter = "(objectClass=user)";
 
             cover.ProgressText = "Retrieving\r\nActive Users...";
             UsernameList = new List<string> ();
@@ -87,6 +90,25 @@ namespace PMC_Desktop {
                 return temp;
             }
         }
+
+        public static bool ChangeLogon () {
+            using (CredentialDialog dialog = new CredentialDialog () {
+                Target = "us.paschalcorp.com"
+            }) {
+                if (dialog.ShowDialog () == DialogResult.OK) {
+                    if (context.ValidateCredentials (dialog.UserName, dialog.Password)) {
+                        cred = new NetworkCredential (dialog.UserName, dialog.Password);
+                        searcher = new DirectorySearcher (new DirectoryEntry (searcher.SearchRoot.Path, cred.UserName, cred.Password));
+                        termSearcher = new DirectorySearcher (new DirectoryEntry (termSearcher.SearchRoot.Path, cred.UserName, cred.Password));
+                        context = new PrincipalContext (ContextType.Domain, "us.paschalcorp.com", cred.UserName, cred.Password);
+                        return true;
+                    } else {
+                        MessageBox.Show ("Credentials failed to validate.  Current logon has not changed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            return false;
+        }
     }
 
     public class User {
@@ -138,7 +160,7 @@ namespace PMC_Desktop {
         private SearchResult CurrentUser;
         public UserPrincipal userTools
             => CurrentUser != null && CurrentUser.Properties["samaccountname"].Count > 0
-            ? UserPrincipal.FindByIdentity (new PrincipalContext (ContextType.Domain), CurrentUser.Properties["samaccountname"][0].ToString ())
+            ? UserPrincipal.FindByIdentity (ADS.context, CurrentUser.Properties["samaccountname"][0].ToString ())
             : null;
         public string Name
             => CurrentUser != null && CurrentUser.Properties["displayname"].Count > 0

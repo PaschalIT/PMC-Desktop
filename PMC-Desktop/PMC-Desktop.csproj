@@ -74,10 +74,10 @@
     <StartupObject>PMC_Desktop.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>PMC-Desktop_2_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>PMC-Desktop-Key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -92,24 +92,23 @@
     <Reference Include="CircularProgressBar, Version=2.8.0.16, Culture=neutral, PublicKeyToken=310fd07b25df79b3, processorArchitecture=MSIL">
       <HintPath>packages\CircularProgressBar.2.8.0.16\lib\net40\CircularProgressBar.dll</HintPath>
     </Reference>
-    <Reference Include="ExpressionEvaluator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=90d9f15d622e2348, processorArchitecture=MSIL">
-      <HintPath>packages\ExpressionEvaluator.2.0.4.0\lib\net40\ExpressionEvaluator.dll</HintPath>
+    <Reference Include="IPrompt, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\IPrompt.1.0.1\lib\net30\IPrompt.dll</HintPath>
     </Reference>
-    <Reference Include="GSF.Core, Version=2.3.302.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\GSF.Core.2.3.302\lib\net46\GSF.Core.dll</HintPath>
+    <Reference Include="Ookii.Dialogs.WinForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=66aa232afad40158, processorArchitecture=MSIL">
+      <HintPath>packages\Ookii.Dialogs.WinForms.1.1.0\lib\net45\Ookii.Dialogs.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="GSF.Security, Version=2.3.302.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\GSF.Security.2.3.302\lib\net46\GSF.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="GSF.Windows, Version=2.3.302.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\GSF.Windows.2.3.302\lib\net46\GSF.Windows.dll</HintPath>
+    <Reference Include="Ookii.Dialogs.Wpf, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0c15020868fd6249, processorArchitecture=MSIL">
+      <HintPath>packages\Ookii.Dialogs.1.0\lib\net35\Ookii.Dialogs.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -175,6 +174,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
+    <None Include="PMC-Desktop-Key.snk" />
     <None Include="PMC-Desktop_2_TemporaryKey.pfx" />
     <None Include="PMC-Desktop_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />

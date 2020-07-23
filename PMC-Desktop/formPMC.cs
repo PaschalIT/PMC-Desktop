@@ -12,6 +12,7 @@ using System.Runtime.InteropServices;
 using System.Deployment.Application;
 using System.IO;
 using System.DirectoryServices.AccountManagement;
+using IPrompt;
 
 namespace PMC_Desktop {
     public partial class formPMC : Form {
@@ -132,14 +133,31 @@ namespace PMC_Desktop {
 
         private void buttonUMResetPassword_Click (object sender, EventArgs e) {
             if (CurrentUser != null) {
-                try {
-                    using (InputBox Input = new InputBox ()) {
-                        if (Input.ShowDialog () == DialogResult.OK) {
-                            string NewPass = Input.textInput.Text;
+                using (InputBox inputBox = new InputBox ()) {
+                    if (inputBox.ShowDialog () == DialogResult.OK) {
+                        try {
+                            CurrentUser.userTools.SetPassword (inputBox.newPass);
+                            MessageBox.Show ("User password set successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        } catch (Exception ex) when (ex.InnerException.Message.Contains ("password complexity")) {
+                            MessageBox.Show ("Could not set user password.  Verify new password meets length, complexity, and history requirements.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        } catch (Exception ex) when (ex.InnerException.Message.Contains ("Access is denied")) {
+                            MessageBox.Show ("Could not set user password.  Verify current logon has proper permissions to make this change.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        } catch (Exception ex) {
+                            MessageBox.Show ($"Could not set user password.  Unknown error.\r\n\r\n{ex.InnerException.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
-                } catch {
-                    
+                }
+            }
+        }
+
+        private void formPMC_KeyDown (object sender, KeyEventArgs e) {
+            if (e.Control) {
+                switch (e.KeyCode) {
+                    case Keys.Oemtilde:
+                        if (ADS.ChangeLogon ()) {
+                            buttonUMReloadUserList.PerformClick ();
+                        }
+                        break;
                 }
             }
         }
