@@ -26,7 +26,8 @@ namespace PMC_Desktop {
             foreach (TextBox control in tabUserManagement.Controls.OfType<TextBox> ()) {
                 control.ReadOnly = true;
                 control.BackColor = SystemColors.ControlLightLight;
-                control.ForeColor = Color.Black;
+                control.ForeColor = SystemColors.WindowText;
+                control.BorderStyle = BorderStyle.FixedSingle;
             }
             label1.Text = "PMC v";
             //if (ApplicationDeployment.IsNetworkDeployed) {
@@ -47,34 +48,46 @@ namespace PMC_Desktop {
 
         private void comboUMUserSelect_SelectedIndexChanged (object sender, EventArgs e) {
             if (comboUMUserSelect.SelectedIndex > -1) {
-                CurrentUser.SetUser (comboUMUserSelect.SelectedItem.ToString (), checkUMTerminatedUsers.Checked);
-                textUMDisplayName.Text = CurrentUser.Name;
-                textUMUsername.Text = CurrentUser.Username;
-                textUMEmail.Text = CurrentUser.Email;
-                textUMDepartment.Text = CurrentUser.Department;
-                textUMTitle.Text = CurrentUser.Title;
-                textUMManager.Text = CurrentUser.Manager;
-                textUMEnabled.Text = CurrentUser.Enabled;
-                textUMLastLogon.Text = CurrentUser.LastLogon;
-                textUMEmployeeID.Text = CurrentUser.EmployeeID;
-                textUMEmployeeNumber.Text = CurrentUser.EmployeeNumber;
-                textUMPassLastChanged.Text = CurrentUser.PassLastChanged;
-                textUMPassExpiration.Text = CurrentUser.PassExpiration;
-                textUMFailedLogonNum.Text = CurrentUser.FailedLogonNum;
-                textUMFailedLogonTime.Text = CurrentUser.FailedLogonTime;
-                textUMDateOfHire.Text = CurrentUser.DateOfHire;
-                textUMDateOfTermination.Text = CurrentUser.DateOfTermination;
-                textUMLastModified.Text = CurrentUser.LastModified;
-                listUMDirectReports.DataSource = CurrentUser.DirectReports;
+                LoadUserProperties ();
             } else if (comboUMUserSelect.SelectedIndex == -1) {
                 ClearUM ();
             }
+        }
+
+        private void LoadUserProperties () {
+            CurrentUser.SetUser (comboUMUserSelect.SelectedItem.ToString (), checkUMTerminatedUsers.Checked);
+            textUMDisplayName.Text = CurrentUser.Name;
+            textUMUsername.Text = CurrentUser.Username;
+            textUMEmail.Text = CurrentUser.Email;
+            textUMDepartment.Text = CurrentUser.Department;
+            textUMTitle.Text = CurrentUser.Title;
+            textUMManager.Text = CurrentUser.Manager;
+            buttonUMEnableUser.Text = (textUMEnabled.Text = CurrentUser.Enabled) == "True" ? "Disable" : "Enable";
+            textUMLastLogon.Text = CurrentUser.LastLogon;
+            textUMEmployeeID.Text = CurrentUser.EmployeeID;
+            EnableAdminButtons ((textUMEmployeeNumber.Text = CurrentUser.EmployeeNumber).Length == 6);
+            textUMPassLastChanged.Text = CurrentUser.PassLastChanged;
+            textUMPassExpiration.Text = CurrentUser.PassExpiration;
+            textUMFailedLogonNum.Text = CurrentUser.FailedLogonNum;
+            textUMFailedLogonTime.Text = CurrentUser.FailedLogonTime;
+            textUMDateOfHire.Text = CurrentUser.DateOfHire;
+            textUMDateOfTermination.Text = CurrentUser.DateOfTermination;
+            textUMLastModified.Text = CurrentUser.LastModified;
+            listUMDirectReports.DataSource = CurrentUser.DirectReports;
+        }
+
+        private void EnableAdminButtons (bool input = false) {
+            buttonUMEnableUser.Enabled = input;
+            buttonUMResetPassword.Enabled = input;
+            buttonUMUnlockAccount.Enabled = input;
+            buttonUMShowEmployeeNumber.Enabled = input;
         }
 
         private void ClearUM () {
             foreach (Control control in tabUserManagement.Controls.OfType<TextBox> ()) {
                 control.Text = null;
             }
+            EnableAdminButtons ();
         }
 
         private void formPMC_Shown (object sender, EventArgs e) {
@@ -122,6 +135,7 @@ namespace PMC_Desktop {
                     try {
                         CurrentUser.userTools.UnlockAccount ();
                         MessageBox.Show ("User account unlocked.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadUserProperties ();
                     } catch {
                         MessageBox.Show ("Could not unlock user account.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -138,6 +152,7 @@ namespace PMC_Desktop {
                         try {
                             CurrentUser.userTools.SetPassword (inputBox.newPass);
                             MessageBox.Show ("User password set successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadUserProperties ();
                         } catch (Exception ex) when (ex.InnerException.Message.Contains ("password complexity")) {
                             MessageBox.Show ("Could not set user password.  Verify new password meets length, complexity, and history requirements.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         } catch (Exception ex) when (ex.InnerException.Message.Contains ("Access is denied")) {
@@ -158,8 +173,58 @@ namespace PMC_Desktop {
                             buttonUMReloadUserList.PerformClick ();
                         }
                         break;
+                    case Keys.R:
+                        buttonUMReloadUserList.PerformClick ();
+                        break;
+                }
+            } else if (e.Alt) {
+                switch (e.KeyCode) {
+                    case Keys.R:
+                        buttonUMResetPassword.PerformClick ();
+                        break;
+                    case Keys.U:
+                        buttonUMUnlockAccount.PerformClick ();
+                        break;
+                    case Keys.E:
+                        buttonUMEnableUser.PerformClick ();
+                        break;
                 }
             }
+        }
+
+        private void itemComChangeLoggedInUser_Click (object sender, EventArgs e) {
+            if (ADS.ChangeLogon ()) {
+                buttonUMReloadUserList.PerformClick ();
+            }
+        }
+
+        private void resetUserPasswordToolStripMenuItem_Click (object sender, EventArgs e) {
+            if (CurrentUser != null) {
+                buttonUMResetPassword.PerformClick ();
+            }
+        }
+
+        private void unlockUserAccountToolStripMenuItem_Click (object sender, EventArgs e) {
+            if (CurrentUser != null) {
+                buttonUMUnlockAccount.PerformClick ();
+            }
+        }
+
+        private void buttonUMEnableUser_Click (object sender, EventArgs e) {
+            if (CurrentUser.Enabled == "True") {
+                CurrentUser.userTools.Enabled = false;
+                CurrentUser.userTools.Save ();
+                buttonUMEnableUser.Text = "Enable";
+            } else {
+                CurrentUser.userTools.Enabled = true;
+                CurrentUser.userTools.Save ();
+                buttonUMEnableUser.Text = "Disable";
+            }
+            LoadUserProperties ();
+        }
+
+        private void openNewPMCToolStripMenuItem_Click (object sender, EventArgs e) {
+
         }
     }
 }

@@ -93,7 +93,9 @@ namespace PMC_Desktop {
 
         public static bool ChangeLogon () {
             using (CredentialDialog dialog = new CredentialDialog () {
-                Target = "us.paschalcorp.com"
+                Target = "us.paschalcorp.com",
+                MainInstruction = "Please supply new password.",
+                WindowTitle = "Reset Password"
             }) {
                 if (dialog.ShowDialog () == DialogResult.OK) {
                     if (context.ValidateCredentials (dialog.UserName, dialog.Password)) {
@@ -119,6 +121,10 @@ namespace PMC_Desktop {
 
                 if (term && CurrentUser == null) {
                     CurrentUser = ADS.GetTerminatedUser (input);
+                }
+
+                if (CurrentUser != null) {
+                    userTools = UserPrincipal.FindByIdentity (ADS.context, Username);
                 }
             }
         }
@@ -158,10 +164,7 @@ namespace PMC_Desktop {
         }
 
         private SearchResult CurrentUser;
-        public UserPrincipal userTools
-            => CurrentUser != null && CurrentUser.Properties["samaccountname"].Count > 0
-            ? UserPrincipal.FindByIdentity (ADS.context, CurrentUser.Properties["samaccountname"][0].ToString ())
-            : null;
+        public UserPrincipal userTools;
         public string Name
             => CurrentUser != null && CurrentUser.Properties["displayname"].Count > 0
             ? CurrentUser.Properties["displayname"][0].ToString ()
