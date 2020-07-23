@@ -14,6 +14,12 @@ namespace PMC_Desktop {
             InitializeComponent ();
         }
 
+        public InputBox (string Prompt, string Caption) {
+            InitializeComponent ();
+            labelPrompt.Text = Prompt;
+            Text = Caption;
+        }
+
         public string newPass {
             get {
                 return textInput.Text;

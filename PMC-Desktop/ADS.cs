@@ -94,8 +94,7 @@ namespace PMC_Desktop {
         public static bool ChangeLogon () {
             using (CredentialDialog dialog = new CredentialDialog () {
                 Target = "us.paschalcorp.com",
-                MainInstruction = "Please supply new password.",
-                WindowTitle = "Reset Password"
+                MainInstruction = "Please supply logon credentials."
             }) {
                 if (dialog.ShowDialog () == DialogResult.OK) {
                     if (context.ValidateCredentials (dialog.UserName, dialog.Password)) {

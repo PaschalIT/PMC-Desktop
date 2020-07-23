@@ -147,7 +147,7 @@ namespace PMC_Desktop {
 
         private void buttonUMResetPassword_Click (object sender, EventArgs e) {
             if (CurrentUser != null) {
-                using (InputBox inputBox = new InputBox ()) {
+                using (InputBox inputBox = new InputBox ("Please provide new password.", "Reset Password")) {
                     if (inputBox.ShowDialog () == DialogResult.OK) {
                         try {
                             CurrentUser.userTools.SetPassword (inputBox.newPass);
