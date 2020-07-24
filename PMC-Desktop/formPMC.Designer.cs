@@ -25,6 +25,18 @@
         private void InitializeComponent () {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formPMC));
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.label1 = new System.Windows.Forms.Label();
+            this.menuPMC = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemFileOpenNewPMC = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.itemFileCurrentUser = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemFileChangeLoggedInUser = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.itemFileClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemCommands = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetUserPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unlockUserAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabUserManagement = new System.Windows.Forms.TabPage();
             this.buttonUMEnableUser = new System.Windows.Forms.Button();
             this.buttonUMResetPassword = new System.Windows.Forms.Button();
@@ -72,20 +84,9 @@
             this.textUMDisplayName = new System.Windows.Forms.TextBox();
             this.labelUMUserSelect = new System.Windows.Forms.Label();
             this.comboUMUserSelect = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.menuPMC = new System.Windows.Forms.MenuStrip();
-            this.itemCommands = new System.Windows.Forms.ToolStripMenuItem();
-            this.itemComChangeLoggedInUser = new System.Windows.Forms.ToolStripMenuItem();
-            this.resetUserPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.unlockUserAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openNewPMCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tabControl1.SuspendLayout();
-            this.tabUserManagement.SuspendLayout();
             this.menuPMC.SuspendLayout();
+            this.tabUserManagement.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -101,9 +102,102 @@
             this.tabControl1.Size = new System.Drawing.Size(865, 549);
             this.tabControl1.TabIndex = 0;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 573);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "label1";
+            // 
+            // menuPMC
+            // 
+            this.menuPMC.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.itemCommands});
+            this.menuPMC.Location = new System.Drawing.Point(0, 0);
+            this.menuPMC.Name = "menuPMC";
+            this.menuPMC.Size = new System.Drawing.Size(884, 24);
+            this.menuPMC.TabIndex = 2;
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.itemFileOpenNewPMC,
+            this.toolStripSeparator1,
+            this.itemFileCurrentUser,
+            this.itemFileChangeLoggedInUser,
+            this.toolStripSeparator3,
+            this.itemFileClose});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // itemFileOpenNewPMC
+            // 
+            this.itemFileOpenNewPMC.Name = "itemFileOpenNewPMC";
+            this.itemFileOpenNewPMC.Size = new System.Drawing.Size(231, 22);
+            this.itemFileOpenNewPMC.Text = "Open New PMC";
+            this.itemFileOpenNewPMC.Click += new System.EventHandler(this.itemFileOpenNewPMC_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(228, 6);
+            // 
+            // itemFileCurrentUser
+            // 
+            this.itemFileCurrentUser.Enabled = false;
+            this.itemFileCurrentUser.Name = "itemFileCurrentUser";
+            this.itemFileCurrentUser.Size = new System.Drawing.Size(231, 22);
+            this.itemFileCurrentUser.Text = "Current User: ";
+            // 
+            // itemFileChangeLoggedInUser
+            // 
+            this.itemFileChangeLoggedInUser.Name = "itemFileChangeLoggedInUser";
+            this.itemFileChangeLoggedInUser.Size = new System.Drawing.Size(231, 22);
+            this.itemFileChangeLoggedInUser.Text = "Change Logged In User (Alt-`)";
+            this.itemFileChangeLoggedInUser.Click += new System.EventHandler(this.itemFileChangeLoggedInUser_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(228, 6);
+            // 
+            // itemFileClose
+            // 
+            this.itemFileClose.Name = "itemFileClose";
+            this.itemFileClose.Size = new System.Drawing.Size(231, 22);
+            this.itemFileClose.Text = "Close";
+            this.itemFileClose.Click += new System.EventHandler(this.itemFileClose_Click);
+            // 
+            // itemCommands
+            // 
+            this.itemCommands.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.resetUserPasswordToolStripMenuItem,
+            this.unlockUserAccountToolStripMenuItem});
+            this.itemCommands.Name = "itemCommands";
+            this.itemCommands.Size = new System.Drawing.Size(107, 20);
+            this.itemCommands.Text = "User Commands";
+            // 
+            // resetUserPasswordToolStripMenuItem
+            // 
+            this.resetUserPasswordToolStripMenuItem.Name = "resetUserPasswordToolStripMenuItem";
+            this.resetUserPasswordToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.resetUserPasswordToolStripMenuItem.Text = "Reset User Password (Alt-R)";
+            this.resetUserPasswordToolStripMenuItem.Click += new System.EventHandler(this.resetUserPasswordToolStripMenuItem_Click);
+            // 
+            // unlockUserAccountToolStripMenuItem
+            // 
+            this.unlockUserAccountToolStripMenuItem.Name = "unlockUserAccountToolStripMenuItem";
+            this.unlockUserAccountToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.unlockUserAccountToolStripMenuItem.Text = "Unlock User Account (Alt-U)";
+            this.unlockUserAccountToolStripMenuItem.Click += new System.EventHandler(this.unlockUserAccountToolStripMenuItem_Click);
+            // 
             // tabUserManagement
             // 
-            this.tabUserManagement.BackgroundImage = global::PMC_Desktop.Properties.Resources.Paschal_P_15;
+            this.tabUserManagement.BackgroundImage = global::PMC_Desktop.Properties.Resources.Paschal_P_10;
             this.tabUserManagement.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.tabUserManagement.Controls.Add(this.buttonUMEnableUser);
             this.tabUserManagement.Controls.Add(this.buttonUMResetPassword);
@@ -563,90 +657,6 @@
             this.comboUMUserSelect.TabIndex = 0;
             this.comboUMUserSelect.SelectedIndexChanged += new System.EventHandler(this.comboUMUserSelect_SelectedIndexChanged);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 573);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
-            // 
-            // menuPMC
-            // 
-            this.menuPMC.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.itemCommands});
-            this.menuPMC.Location = new System.Drawing.Point(0, 0);
-            this.menuPMC.Name = "menuPMC";
-            this.menuPMC.Size = new System.Drawing.Size(884, 24);
-            this.menuPMC.TabIndex = 2;
-            // 
-            // itemCommands
-            // 
-            this.itemCommands.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.itemComChangeLoggedInUser,
-            this.toolStripSeparator2,
-            this.resetUserPasswordToolStripMenuItem,
-            this.unlockUserAccountToolStripMenuItem});
-            this.itemCommands.Name = "itemCommands";
-            this.itemCommands.Size = new System.Drawing.Size(81, 20);
-            this.itemCommands.Text = "Commands";
-            // 
-            // itemComChangeLoggedInUser
-            // 
-            this.itemComChangeLoggedInUser.Name = "itemComChangeLoggedInUser";
-            this.itemComChangeLoggedInUser.Size = new System.Drawing.Size(231, 22);
-            this.itemComChangeLoggedInUser.Text = "Change Logged In User (Alt-`)";
-            this.itemComChangeLoggedInUser.Click += new System.EventHandler(this.itemComChangeLoggedInUser_Click);
-            // 
-            // resetUserPasswordToolStripMenuItem
-            // 
-            this.resetUserPasswordToolStripMenuItem.Name = "resetUserPasswordToolStripMenuItem";
-            this.resetUserPasswordToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
-            this.resetUserPasswordToolStripMenuItem.Text = "Reset User Password (Alt-R)";
-            this.resetUserPasswordToolStripMenuItem.Click += new System.EventHandler(this.resetUserPasswordToolStripMenuItem_Click);
-            // 
-            // unlockUserAccountToolStripMenuItem
-            // 
-            this.unlockUserAccountToolStripMenuItem.Name = "unlockUserAccountToolStripMenuItem";
-            this.unlockUserAccountToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
-            this.unlockUserAccountToolStripMenuItem.Text = "Unlock User Account (Alt-U)";
-            this.unlockUserAccountToolStripMenuItem.Click += new System.EventHandler(this.unlockUserAccountToolStripMenuItem_Click);
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openNewPMCToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.closeToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // openNewPMCToolStripMenuItem
-            // 
-            this.openNewPMCToolStripMenuItem.Name = "openNewPMCToolStripMenuItem";
-            this.openNewPMCToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.openNewPMCToolStripMenuItem.Text = "Open New PMC";
-            this.openNewPMCToolStripMenuItem.Click += new System.EventHandler(this.openNewPMCToolStripMenuItem_Click);
-            // 
-            // closeToolStripMenuItem
-            // 
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.closeToolStripMenuItem.Text = "Close";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(228, 6);
-            // 
             // formPMC
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -668,10 +678,10 @@
             this.Shown += new System.EventHandler(this.formPMC_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.formPMC_KeyDown);
             this.tabControl1.ResumeLayout(false);
-            this.tabUserManagement.ResumeLayout(false);
-            this.tabUserManagement.PerformLayout();
             this.menuPMC.ResumeLayout(false);
             this.menuPMC.PerformLayout();
+            this.tabUserManagement.ResumeLayout(false);
+            this.tabUserManagement.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -729,15 +739,16 @@
         private System.Windows.Forms.Button buttonUMUnlockAccount;
         private System.Windows.Forms.MenuStrip menuPMC;
         private System.Windows.Forms.ToolStripMenuItem itemCommands;
-        private System.Windows.Forms.ToolStripMenuItem itemComChangeLoggedInUser;
         private System.Windows.Forms.ToolStripMenuItem resetUserPasswordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem unlockUserAccountToolStripMenuItem;
         private System.Windows.Forms.Button buttonUMEnableUser;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openNewPMCToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem itemFileOpenNewPMC;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem itemFileClose;
+        private System.Windows.Forms.ToolStripMenuItem itemFileCurrentUser;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem itemFileChangeLoggedInUser;
     }
 }
 

@@ -39,6 +39,7 @@ namespace PMC_Desktop {
             DirectoryInfo folder = new DirectoryInfo (path).GetDirectories ().OrderByDescending (d => d.LastWriteTimeUtc).First ();
             string[] items = folder.Name.Split ('_');
             label1.Text += $"{items[1]}.{items[2]}.{items[3]}.{items[4]}";
+            itemFileCurrentUser.Text = $"Current User: {Environment.UserName}";
         }
 
         private void checkUMTerminatedUsers_CheckedChanged (object sender, EventArgs e) {
@@ -101,8 +102,9 @@ namespace PMC_Desktop {
             ADS.UpdateUsernameLists (progress);
             comboUMUserSelect.DataSource = ADS.PopulateUserList (checkUMTerminatedUsers.Checked);
             comboUMUserSelect.SelectedIndex = -1;
-            cover.Close ();
             progress.Close ();
+            cover.Close ();
+            Refresh ();
         }
 
         private void buttonUMShowEmployeeNumber_Click (object sender, EventArgs e) {
@@ -169,12 +171,13 @@ namespace PMC_Desktop {
             if (e.Control) {
                 switch (e.KeyCode) {
                     case Keys.Oemtilde:
-                        if (ADS.ChangeLogon ()) {
-                            buttonUMReloadUserList.PerformClick ();
-                        }
+                        itemFileChangeLoggedInUser.PerformClick ();
                         break;
                     case Keys.R:
                         buttonUMReloadUserList.PerformClick ();
+                        break;
+                    case Keys.Q:
+                        itemFileClose.PerformClick ();
                         break;
                 }
             } else if (e.Alt) {
@@ -192,8 +195,9 @@ namespace PMC_Desktop {
             }
         }
 
-        private void itemComChangeLoggedInUser_Click (object sender, EventArgs e) {
+        private void itemFileChangeLoggedInUser_Click (object sender, EventArgs e) {
             if (ADS.ChangeLogon ()) {
+                itemFileCurrentUser.Text = $"Current User: {ADS.cred.UserName}";
                 buttonUMReloadUserList.PerformClick ();
             }
         }
@@ -223,8 +227,21 @@ namespace PMC_Desktop {
             LoadUserProperties ();
         }
 
-        private void openNewPMCToolStripMenuItem_Click (object sender, EventArgs e) {
+        private void itemFileOpenNewPMC_Click (object sender, EventArgs e) {
+            if (File.Exists (@"C:\Paschal\Scripts\Launch_PMC-Desktop.ps1")) {
+                string cmd = @"C:\Paschal\Scripts\Launch_PMC-Desktop.ps1";
 
+                try {
+                    var process = System.Diagnostics.Process.Start (@"C:\Windows\System32\WindowsPowershell\v1.0\powershell.exe", cmd);
+                    process.WaitForExit ();
+                } catch (Exception ex) {
+                    MessageBox.Show ($"Could not launch PMC.\r\n\r\n{ex.InnerException.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void itemFileClose_Click (object sender, EventArgs e) {
+            Close ();
         }
     }
 }
