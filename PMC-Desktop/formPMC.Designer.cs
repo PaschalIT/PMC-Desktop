@@ -84,6 +84,7 @@
             this.textUMDisplayName = new System.Windows.Forms.TextBox();
             this.labelUMUserSelect = new System.Windows.Forms.Label();
             this.comboUMUserSelect = new System.Windows.Forms.ComboBox();
+            this.itemFileReloadPMC = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.menuPMC.SuspendLayout();
             this.tabUserManagement.SuspendLayout();
@@ -125,6 +126,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.itemFileOpenNewPMC,
+            this.itemFileReloadPMC,
             this.toolStripSeparator1,
             this.itemFileCurrentUser,
             this.itemFileChangeLoggedInUser,
@@ -648,7 +650,7 @@
             // 
             // comboUMUserSelect
             // 
-            this.comboUMUserSelect.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboUMUserSelect.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.comboUMUserSelect.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboUMUserSelect.FormattingEnabled = true;
             this.comboUMUserSelect.Location = new System.Drawing.Point(210, 5);
@@ -656,6 +658,13 @@
             this.comboUMUserSelect.Size = new System.Drawing.Size(250, 21);
             this.comboUMUserSelect.TabIndex = 0;
             this.comboUMUserSelect.SelectedIndexChanged += new System.EventHandler(this.comboUMUserSelect_SelectedIndexChanged);
+            // 
+            // itemFileReloadPMC
+            // 
+            this.itemFileReloadPMC.Name = "itemFileReloadPMC";
+            this.itemFileReloadPMC.Size = new System.Drawing.Size(231, 22);
+            this.itemFileReloadPMC.Text = "Reload PMC";
+            this.itemFileReloadPMC.Click += new System.EventHandler(this.itemFileReloadPMC_Click);
             // 
             // formPMC
             // 
@@ -749,6 +758,7 @@
         private System.Windows.Forms.ToolStripMenuItem itemFileCurrentUser;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem itemFileChangeLoggedInUser;
+        private System.Windows.Forms.ToolStripMenuItem itemFileReloadPMC;
     }
 }
 

@@ -40,6 +40,7 @@ namespace PMC_Desktop {
             string[] items = folder.Name.Split ('_');
             label1.Text += $"{items[1]}.{items[2]}.{items[3]}.{items[4]}";
             itemFileCurrentUser.Text = $"Current User: {Environment.UserName}";
+            Text = $"PMC - {Environment.UserName}";
         }
 
         private void checkUMTerminatedUsers_CheckedChanged (object sender, EventArgs e) {
@@ -169,6 +170,13 @@ namespace PMC_Desktop {
 
         private void formPMC_KeyDown (object sender, KeyEventArgs e) {
             if (e.Control) {
+                if (e.Shift) {
+                    switch (e.KeyCode) {
+                        case Keys.R:
+                            itemFileReloadPMC.PerformClick ();
+                            break;
+                    }
+                }
                 switch (e.KeyCode) {
                     case Keys.Oemtilde:
                         itemFileChangeLoggedInUser.PerformClick ();
@@ -178,6 +186,9 @@ namespace PMC_Desktop {
                         break;
                     case Keys.Q:
                         itemFileClose.PerformClick ();
+                        break;
+                    case Keys.N:
+                        itemFileOpenNewPMC.PerformClick ();
                         break;
                 }
             } else if (e.Alt) {
@@ -191,13 +202,32 @@ namespace PMC_Desktop {
                     case Keys.E:
                         buttonUMEnableUser.PerformClick ();
                         break;
+                    case Keys.S:
+                        buttonUMShowEmployeeNumber.PerformClick ();
+                        break;
                 }
+            } else if (e.KeyCode == Keys.Escape) {
+                if (FindFocusedControl (this) == comboUMUserSelect) {
+                    comboUMUserSelect.DroppedDown = false;
+                    comboUMUserSelect.Text = textUMUsername.Text;
+                    //e.Handled = true;
+                }
+                ActiveControl = labelUMUserSelect;
             }
+        }
+
+        public static Control FindFocusedControl (Control control) {
+            ContainerControl container = control as ContainerControl;
+
+            return (null != container
+                ? FindFocusedControl (container.ActiveControl)
+                : control);
         }
 
         private void itemFileChangeLoggedInUser_Click (object sender, EventArgs e) {
             if (ADS.ChangeLogon ()) {
                 itemFileCurrentUser.Text = $"Current User: {ADS.cred.UserName}";
+                Text = $"PMC - {ADS.cred.UserName}";
                 buttonUMReloadUserList.PerformClick ();
             }
         }
@@ -242,6 +272,11 @@ namespace PMC_Desktop {
 
         private void itemFileClose_Click (object sender, EventArgs e) {
             Close ();
+        }
+
+        private void itemFileReloadPMC_Click (object sender, EventArgs e) {
+            itemFileOpenNewPMC.PerformClick ();
+            itemFileClose.PerformClick ();
         }
     }
 }
