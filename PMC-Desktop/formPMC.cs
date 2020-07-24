@@ -65,6 +65,7 @@ namespace PMC_Desktop {
             textUMTitle.Text = CurrentUser.Title;
             textUMManager.Text = CurrentUser.Manager;
             buttonUMEnableUser.Text = (textUMEnabled.Text = CurrentUser.Enabled) == "True" ? "Disable" : "Enable";
+            textUMEnabled.BackColor = textUMEnabled.Text == "True" ? Color.PaleGreen : Color.MistyRose;
             textUMLastLogon.Text = CurrentUser.LastLogon;
             textUMEmployeeID.Text = CurrentUser.EmployeeID;
             EnableAdminButtons ((textUMEmployeeNumber.Text = CurrentUser.EmployeeNumber).Length == 6);
@@ -89,6 +90,7 @@ namespace PMC_Desktop {
             foreach (Control control in tabUserManagement.Controls.OfType<TextBox> ()) {
                 control.Text = null;
             }
+            textUMEnabled.BackColor = SystemColors.ControlLightLight;
             EnableAdminButtons ();
         }
 
