@@ -222,9 +222,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <AdditionalFiles Include="Resources\CHANGELOG.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AdditionalFiles>
     <None Include="Resources\Larger-Paschal-P-01.png" />
   </ItemGroup>
   <ItemGroup>

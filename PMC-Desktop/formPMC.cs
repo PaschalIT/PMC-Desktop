@@ -289,7 +289,7 @@ namespace PMC_Desktop {
         }
 
         private void listUMDirectReports_MouseDoubleClick (object sender, System.Windows.Forms.MouseEventArgs e) {
-            if (listUMDirectReports.IndexFromPoint (e.Location) == listUMDirectReports.SelectedIndex) {
+            if (listUMDirectReports.IndexFromPoint (e.Location) == listUMDirectReports.SelectedIndex && listUMDirectReports.SelectedItem.ToString () != "N/A") {
                 if (listUMDirectReports.SelectedItem.ToString ().Contains ("Not found")) {
                     MessageBox.Show ("User not found in Active or Terminated user lists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -305,6 +305,31 @@ namespace PMC_Desktop {
                     }
 
                     comboUMUserSelect.Text = res.Properties["samaccountname"][0].ToString ();
+                    ActiveControl = labelUMUserSelect;
+                } catch (Exception ex) {
+                    MessageBox.Show ($"Could not resolve user identity.  Please select through main user dropdown.\r\n\r\n{ex.InnerException.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void textUMManager_MouseDoubleClick (object sender, System.Windows.Forms.MouseEventArgs e) {
+            if (textUMManager.Text != null && textUMManager.Text != "") {
+                if (textUMManager.Text.Contains ("Not found")) {
+                    MessageBox.Show ("User not found in Active or Terminated user lists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                } else if (textUMManager.Text.Contains ("TERM")) {
+                    checkUMTerminatedUsers.Checked = true;
+                }
+
+                try {
+                    SearchResult res = ADS.GetSingleUser (textUMManager.Text);
+
+                    if (res == null) {
+                        res = ADS.GetTerminatedUser (textUMManager.Text);
+                    }
+
+                    comboUMUserSelect.Text = res.Properties["samaccountname"][0].ToString ();
+                    ActiveControl = labelUMUserSelect;
                 } catch (Exception ex) {
                     MessageBox.Show ($"Could not resolve user identity.  Please select through main user dropdown.\r\n\r\n{ex.InnerException.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }

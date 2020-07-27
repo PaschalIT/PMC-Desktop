@@ -500,6 +500,7 @@
             this.textUMManager.Name = "textUMManager";
             this.textUMManager.Size = new System.Drawing.Size(200, 20);
             this.textUMManager.TabIndex = 8;
+            this.textUMManager.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textUMManager_MouseDoubleClick);
             // 
             // textUMTitle
             // 
