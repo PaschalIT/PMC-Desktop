@@ -2,17 +2,36 @@
 
 
 
-## [0.1.1](https://github.com/PaschalIT/PMC-Desktop/compare/0.1.0...0.1.1) (2020-07-27)
+## [0.1.3](https://github.com/PaschalIT/PMC-Desktop/compare/0.1.2-a...0.1.3) (2020-07-27)
+
+
+### Documentation
+
+* **Props:** Updated project properties ([35952f4](https://github.com/PaschalIT/PMC-Desktop/commit/35952f42b518a6d0b4b99717c50a9706df6a64c3))
+
+
+### Features
+
+* **UM:** Added Direct Reports double click ([ea2ff67](https://github.com/PaschalIT/PMC-Desktop/commit/ea2ff67d19122c17414172f45a40e06e62600a0d))
+
+
+
+## [0.1.2](https://github.com/PaschalIT/PMC-Desktop/compare/0.1.0...0.1.2) (2020-07-27)
 
 
 ### Bug Fixes
 
-* **Changelog:** Updated filepath ([34fc4d5](https://github.com/PaschalIT/PMC-Desktop/commit/34fc4d525f6c0448e69ff215198d55154b5e42ab))
+* **Changelog:** Updated filepath ([5adb417](https://github.com/PaschalIT/PMC-Desktop/commit/5adb4176ff4a76cc2d2b7d9ee77ee7c1b7761e37))
 
 
 ### Documentation
 
 * **Changelog:** Working out changelog styles ([a115752](https://github.com/PaschalIT/PMC-Desktop/commit/a115752f71da35975e2d1818e093c6a16eaa017d))
+
+
+### Features
+
+* **UM:** Added Direct Reports double click ([64c9b3e](https://github.com/PaschalIT/PMC-Desktop/commit/64c9b3eda1d7f74c7503245b383a2ffc27854995))
 
 
 
