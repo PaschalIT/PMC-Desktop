@@ -14,6 +14,7 @@ using System.IO;
 using System.DirectoryServices.AccountManagement;
 using IPrompt;
 using Markdig;
+using System.Windows.Input;
 
 namespace PMC_Desktop {
     public partial class formPMC : Form {
@@ -172,7 +173,7 @@ namespace PMC_Desktop {
             }
         }
 
-        private void formPMC_KeyDown (object sender, KeyEventArgs e) {
+        private void formPMC_KeyDown (object sender, System.Windows.Forms.KeyEventArgs e) {
             if (e.Control) {
                 if (e.Shift) {
                     switch (e.KeyCode) {
@@ -284,6 +285,29 @@ namespace PMC_Desktop {
         private void itemChangelog_Click (object sender, EventArgs e) {
             using (Changelog change = new Changelog ()) {
                 change.ShowDialog ();
+            }
+        }
+
+        private void listUMDirectReports_MouseDoubleClick (object sender, System.Windows.Forms.MouseEventArgs e) {
+            if (listUMDirectReports.IndexFromPoint (e.Location) == listUMDirectReports.SelectedIndex) {
+                if (listUMDirectReports.SelectedItem.ToString ().Contains ("Not found")) {
+                    MessageBox.Show ("User not found in Active or Terminated user lists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                } else if (listUMDirectReports.SelectedItem.ToString ().Contains ("TERM")) {
+                    checkUMTerminatedUsers.Checked = true;
+                }
+
+                try {
+                    SearchResult res = ADS.GetSingleUser (listUMDirectReports.SelectedItem.ToString ());
+
+                    if (res == null) {
+                        res = ADS.GetTerminatedUser (listUMDirectReports.SelectedItem.ToString ());
+                    }
+
+                    comboUMUserSelect.Text = res.Properties["samaccountname"][0].ToString ();
+                } catch (Exception ex) {
+                    MessageBox.Show ($"Could not resolve user identity.  Please select through main user dropdown.\r\n\r\n{ex.InnerException.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }
