@@ -72,6 +72,7 @@ namespace PMC_Desktop {
             textUMPassLastChanged.Text = CurrentUser.PassLastChanged;
             textUMPassExpiration.Text = CurrentUser.PassExpiration;
             textUMFailedLogonNum.Text = CurrentUser.FailedLogonNum;
+            textUMFailedLogonNum.BackColor = CurrentUser.userTools.IsAccountLockedOut () ? Color.LightCoral : SystemColors.Window;
             textUMFailedLogonTime.Text = CurrentUser.FailedLogonTime;
             textUMDateOfHire.Text = CurrentUser.DateOfHire;
             textUMDateOfTermination.Text = CurrentUser.DateOfTermination;
@@ -219,9 +220,7 @@ namespace PMC_Desktop {
         }
 
         public static Control FindFocusedControl (Control control) {
-            ContainerControl container = control as ContainerControl;
-
-            return (null != container
+            return (control is ContainerControl container
                 ? FindFocusedControl (container.ActiveControl)
                 : control);
         }
