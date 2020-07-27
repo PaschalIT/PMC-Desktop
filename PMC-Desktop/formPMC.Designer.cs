@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent () {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formPMC));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabUserManagement = new System.Windows.Forms.TabPage();
@@ -85,9 +86,12 @@
             this.itemCommands = new System.Windows.Forms.ToolStripMenuItem();
             this.resetUserPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unlockUserAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextVersion = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.itemChangelog = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabUserManagement.SuspendLayout();
             this.menuPMC.SuspendLayout();
+            this.contextVersion.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -568,6 +572,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.ContextMenuStrip = this.contextVersion;
             this.label1.Location = new System.Drawing.Point(9, 573);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
@@ -666,6 +671,20 @@
             this.unlockUserAccountToolStripMenuItem.Text = "Unlock User Account (Alt-U)";
             this.unlockUserAccountToolStripMenuItem.Click += new System.EventHandler(this.unlockUserAccountToolStripMenuItem_Click);
             // 
+            // contextVersion
+            // 
+            this.contextVersion.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.itemChangelog});
+            this.contextVersion.Name = "contextVersion";
+            this.contextVersion.Size = new System.Drawing.Size(181, 48);
+            // 
+            // itemChangelog
+            // 
+            this.itemChangelog.Name = "itemChangelog";
+            this.itemChangelog.Size = new System.Drawing.Size(180, 22);
+            this.itemChangelog.Text = "Changelog";
+            this.itemChangelog.Click += new System.EventHandler(this.itemChangelog_Click);
+            // 
             // formPMC
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -691,6 +710,7 @@
             this.tabUserManagement.PerformLayout();
             this.menuPMC.ResumeLayout(false);
             this.menuPMC.PerformLayout();
+            this.contextVersion.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -759,6 +779,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem itemFileChangeLoggedInUser;
         private System.Windows.Forms.ToolStripMenuItem itemFileReloadPMC;
+        private System.Windows.Forms.ContextMenuStrip contextVersion;
+        private System.Windows.Forms.ToolStripMenuItem itemChangelog;
     }
 }
 

@@ -13,6 +13,7 @@ using System.Deployment.Application;
 using System.IO;
 using System.DirectoryServices.AccountManagement;
 using IPrompt;
+using Markdig;
 
 namespace PMC_Desktop {
     public partial class formPMC : Form {
@@ -278,6 +279,12 @@ namespace PMC_Desktop {
         private void itemFileReloadPMC_Click (object sender, EventArgs e) {
             itemFileOpenNewPMC.PerformClick ();
             itemFileClose.PerformClick ();
+        }
+
+        private void itemChangelog_Click (object sender, EventArgs e) {
+            using (Changelog change = new Changelog ()) {
+                change.ShowDialog ();
+            }
         }
     }
 }
