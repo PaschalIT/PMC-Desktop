@@ -69,8 +69,13 @@ namespace PMC_Desktop {
                 SearchResult temp = searcher.FindOne ();
                 searcher.Filter = "(objectClass=user)";
                 return temp;
-            } else {
+            } else if (IsLower (input)) {
                 searcher.Filter = $"(&(objectClass=user)(samaccountname={input}))";
+                SearchResult temp = searcher.FindOne ();
+                searcher.Filter = "(objectClass=user)";
+                return temp;
+            } else {
+                searcher.Filter = $"(&(objectClass=user)(anr={input}))";
                 SearchResult temp = searcher.FindOne ();
                 searcher.Filter = "(objectClass=user)";
                 return temp;
@@ -83,12 +88,27 @@ namespace PMC_Desktop {
                 SearchResult temp = termSearcher.FindOne ();
                 termSearcher.Filter = "(objectClass=user)";
                 return temp;
-            } else {
+            } else if (IsLower (input)) {
                 termSearcher.Filter = $"(&(objectClass=user)(samaccountname={input}))";
                 SearchResult temp = termSearcher.FindOne ();
                 termSearcher.Filter = "(objectClass=user)";
                 return temp;
+            } else {
+                termSearcher.Filter = $"(&(objectClass.user)(anr={input}))";
+                SearchResult temp = termSearcher.FindOne ();
+                termSearcher.Filter = "(objectClass=user)";
+                return temp;
             }
+        }
+
+        public static bool IsLower (string input) {
+            for (int i = 0; i < input.Length; i++) {
+                if (!Char.IsLower (input[i])) {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public static bool ChangeLogon () {
