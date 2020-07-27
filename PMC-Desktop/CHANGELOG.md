@@ -2,6 +2,20 @@
 
 
 
+## [0.1.1](https://github.com/PaschalIT/PMC-Desktop/compare/0.1.0...0.1.1) (2020-07-27)
+
+
+### Bug Fixes
+
+* **Changelog:** Updated filepath ([34fc4d5](https://github.com/PaschalIT/PMC-Desktop/commit/34fc4d525f6c0448e69ff215198d55154b5e42ab))
+
+
+### Documentation
+
+* **Changelog:** Working out changelog styles ([a115752](https://github.com/PaschalIT/PMC-Desktop/commit/a115752f71da35975e2d1818e093c6a16eaa017d))
+
+
+
 # [0.1.0](https://github.com/PaschalIT/PMC-Desktop/compare/daaf9f620882f6a2afb97aaa02fedab01d38e455...0.1.0) (2020-07-27)
 
 
@@ -13,7 +27,7 @@
 ### Documentation
 
 * **Changelog:** Working out changelog styles ([2d2bb48](https://github.com/PaschalIT/PMC-Desktop/commit/2d2bb489e33eadc60c5acb559975bd4a0c1076b9))
-* **Changelog:** Added CHANGELOG.md ([51527c1](https://github.com/PaschalIT/PMC-Desktop/commit/51527c1d411ea9d6dc3cbb987ff906da5f27e7cd))
+* Added CHANGELOG.md ([51527c1](https://github.com/PaschalIT/PMC-Desktop/commit/51527c1d411ea9d6dc3cbb987ff906da5f27e7cd))
 
 
 ### Features

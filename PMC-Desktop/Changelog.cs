@@ -18,7 +18,7 @@ namespace PMC_Desktop {
             string path = @"\\WFS01V\Groups\IT\Development\PMC_Desktop\Application Files\";
             DirectoryInfo folder = new DirectoryInfo (path).GetDirectories ().OrderByDescending (d => d.LastWriteTimeUtc).First ();
 
-            webBrowser1.DocumentText = Markdown.ToHtml (File.ReadAllText ($"{folder.FullName}\\Resources\\CHANGELOG.md"));
+            webBrowser1.DocumentText = Markdown.ToHtml (File.ReadAllText ($"{folder.FullName}\\CHANGELOG.md"));
         }
     }
 }
