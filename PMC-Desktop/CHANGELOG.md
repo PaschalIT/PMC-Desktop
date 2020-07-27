@@ -1,5 +1,6 @@
 ##  (2020-07-27)
 
+* docs: Added CHANGELOG.md ([51527c1](https://github.com/PaschalIT/PMC-Desktop/commit/51527c1))
 * style(UM): Added color tint when user locked out ([daaf9f6](https://github.com/PaschalIT/PMC-Desktop/commit/daaf9f6))
 * Added beginnings of top level menu bar.  Added functionality to Enable/Disable User button.  Changed ([19b82a2](https://github.com/PaschalIT/PMC-Desktop/commit/19b82a2))
 * Added color tint to Enabled textbox to demonstrate status in clear fashion.  Updated User Commands m ([678b649](https://github.com/PaschalIT/PMC-Desktop/commit/678b649))
