@@ -15,7 +15,10 @@ namespace PMC_Desktop {
         public Changelog () {
             InitializeComponent ();
 
-            webBrowser1.DocumentText = Markdown.ToHtml (File.ReadAllText (@"..\..\CHANGELOG.md"));
+            string path = @"\\WFS01V\Groups\IT\Development\PMC_Desktop\Application Files\";
+            DirectoryInfo folder = new DirectoryInfo (path).GetDirectories ().OrderByDescending (d => d.LastWriteTimeUtc).First ();
+
+            webBrowser1.DocumentText = Markdown.ToHtml (File.ReadAllText ($"{folder.FullName}\\Resources\\CHANGELOG.md"));
         }
     }
 }

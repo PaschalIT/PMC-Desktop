@@ -3,7 +3,7 @@
 
 ### Features
 
-* **Changelog:** Added changelog display ([f3847d1](https://github.com/PaschalIT/PMC-Desktop/commit/f3847d13b6b7ef8fb39692f40d56501defdb059a))
+* **Changelog:** Added changelog display ([7d919c9](https://github.com/PaschalIT/PMC-Desktop/commit/7d919c96d7360d2074202f70e082d60581f39264))
 
 
 
