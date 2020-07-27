@@ -74,6 +74,8 @@
             this.labelUMUserSelect = new System.Windows.Forms.Label();
             this.comboUMUserSelect = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.contextVersion = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.itemChangelog = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPMC = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemFileOpenNewPMC = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,12 +88,10 @@
             this.itemCommands = new System.Windows.Forms.ToolStripMenuItem();
             this.resetUserPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unlockUserAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextVersion = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.itemChangelog = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabUserManagement.SuspendLayout();
-            this.menuPMC.SuspendLayout();
             this.contextVersion.SuspendLayout();
+            this.menuPMC.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -342,6 +342,7 @@
             this.listUMDirectReports.Name = "listUMDirectReports";
             this.listUMDirectReports.Size = new System.Drawing.Size(200, 186);
             this.listUMDirectReports.TabIndex = 27;
+            this.listUMDirectReports.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listUMDirectReports_MouseDoubleClick);
             // 
             // labelUMDirectReports
             // 
@@ -579,6 +580,20 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "label1";
             // 
+            // contextVersion
+            // 
+            this.contextVersion.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.itemChangelog});
+            this.contextVersion.Name = "contextVersion";
+            this.contextVersion.Size = new System.Drawing.Size(133, 26);
+            // 
+            // itemChangelog
+            // 
+            this.itemChangelog.Name = "itemChangelog";
+            this.itemChangelog.Size = new System.Drawing.Size(132, 22);
+            this.itemChangelog.Text = "Changelog";
+            this.itemChangelog.Click += new System.EventHandler(this.itemChangelog_Click);
+            // 
             // menuPMC
             // 
             this.menuPMC.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -671,20 +686,6 @@
             this.unlockUserAccountToolStripMenuItem.Text = "Unlock User Account (Alt-U)";
             this.unlockUserAccountToolStripMenuItem.Click += new System.EventHandler(this.unlockUserAccountToolStripMenuItem_Click);
             // 
-            // contextVersion
-            // 
-            this.contextVersion.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.itemChangelog});
-            this.contextVersion.Name = "contextVersion";
-            this.contextVersion.Size = new System.Drawing.Size(181, 48);
-            // 
-            // itemChangelog
-            // 
-            this.itemChangelog.Name = "itemChangelog";
-            this.itemChangelog.Size = new System.Drawing.Size(180, 22);
-            this.itemChangelog.Text = "Changelog";
-            this.itemChangelog.Click += new System.EventHandler(this.itemChangelog_Click);
-            // 
             // formPMC
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -708,9 +709,9 @@
             this.tabControl1.ResumeLayout(false);
             this.tabUserManagement.ResumeLayout(false);
             this.tabUserManagement.PerformLayout();
+            this.contextVersion.ResumeLayout(false);
             this.menuPMC.ResumeLayout(false);
             this.menuPMC.PerformLayout();
-            this.contextVersion.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
