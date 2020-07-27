@@ -1,25 +1,9 @@
-##  (2020-07-27)
+#  (2020-07-27)
 
-* style(UM): Added color tint when user locked out ([daaf9f6](https://github.com/PaschalIT/PMC-Desktop/commit/daaf9f6))
-* Added beginnings of top level menu bar.  Added functionality to Enable/Disable User button.  Changed ([19b82a2](https://github.com/PaschalIT/PMC-Desktop/commit/19b82a2))
-* Added color tint to Enabled textbox to demonstrate status in clear fashion.  Updated User Commands m ([678b649](https://github.com/PaschalIT/PMC-Desktop/commit/678b649))
-* Added functionality of Show button for Employee Number ([fd79a20](https://github.com/PaschalIT/PMC-Desktop/commit/fd79a20))
-* Added functionality to Unlock Account and Reset Password buttons.  Added ability to change current l ([2c994f4](https://github.com/PaschalIT/PMC-Desktop/commit/2c994f4))
-* Added loading overlay for userlist refresh.  Added Refresh User List button to manually reload userl ([a948aa6](https://github.com/PaschalIT/PMC-Desktop/commit/a948aa6))
-* Added username to PMC title bar.  Added escape functionality to User Select combobox.  Added hotkey  ([9b70ba9](https://github.com/PaschalIT/PMC-Desktop/commit/9b70ba9))
-* Added version number at bottom left of main form. ([b44b6f5](https://github.com/PaschalIT/PMC-Desktop/commit/b44b6f5))
-* Began work on input box form. ([fcba59a](https://github.com/PaschalIT/PMC-Desktop/commit/fcba59a))
-* Edited app.manifest in attempt to solve ClickOnce run issues.  Edited loading circle colors & style. ([f506e4d](https://github.com/PaschalIT/PMC-Desktop/commit/f506e4d))
-* Filled out User Management UI.  Added display of user properties. ([80331e9](https://github.com/PaschalIT/PMC-Desktop/commit/80331e9))
-* Fixed word wrap of loading text ([75b98c9](https://github.com/PaschalIT/PMC-Desktop/commit/75b98c9))
-* Initial design of interface ([56e7701](https://github.com/PaschalIT/PMC-Desktop/commit/56e7701))
-* Minor update to progress circle layout. ([31e1bb1](https://github.com/PaschalIT/PMC-Desktop/commit/31e1bb1))
-* Moved progress circle to new form to allow for non-transparency.  Merged user loading to one process ([0d7888c](https://github.com/PaschalIT/PMC-Desktop/commit/0d7888c))
-* Slightly reduced opacity of Paschal background.  Enabled menu option to change logged in user.  Adde ([d257268](https://github.com/PaschalIT/PMC-Desktop/commit/d257268))
-* Updated colors and design of loading circle. ([6b79dda](https://github.com/PaschalIT/PMC-Desktop/commit/6b79dda))
-* Updated program titlebar and taskbar icons.  Added automatic check for updates functionality. ([58ef18d](https://github.com/PaschalIT/PMC-Desktop/commit/58ef18d))
-* Updated project Assembly info in an attempt to fix auto-update functionality. ([8fb0f3b](https://github.com/PaschalIT/PMC-Desktop/commit/8fb0f3b))
-* Updated text in Reset Password prompt. ([2d2e971](https://github.com/PaschalIT/PMC-Desktop/commit/2d2e971))
+
+### Features
+
+* **Changelog:** Added changelog display ([f3847d1](https://github.com/PaschalIT/PMC-Desktop/commit/f3847d13b6b7ef8fb39692f40d56501defdb059a))
 
 
 
