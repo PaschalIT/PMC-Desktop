@@ -3,7 +3,8 @@
 
 ### Bug Fixes
 
-* **UM:** User load crash ([d4170cc](https://github.com/PaschalIT/PMC-Desktop/commit/d4170ccb606e2a94a124a11f18daa11e84c40b84))
+* **UM:** Manager/DR double click term user fix ([4f23dc8](https://github.com/PaschalIT/PMC-Desktop/commit/4f23dc85362f90798b83935e5581343b36535b3a))
+* **UM:** User load crash ([1607ffe](https://github.com/PaschalIT/PMC-Desktop/commit/1607ffe6b5ec5ac8a0c5c98efb9a490368242e6f))
 
 
 ### Documentation
