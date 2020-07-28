@@ -94,7 +94,7 @@ namespace PMC_Desktop {
                 termSearcher.Filter = "(objectClass=user)";
                 return temp;
             } else {
-                termSearcher.Filter = $"(&(objectClass.user)(anr={input}))";
+                termSearcher.Filter = $"(&(objectClass=user)(anr={input}))";
                 SearchResult temp = termSearcher.FindOne ();
                 termSearcher.Filter = "(objectClass=user)";
                 return temp;
@@ -103,7 +103,7 @@ namespace PMC_Desktop {
 
         public static bool IsLower (string input) {
             for (int i = 0; i < input.Length; i++) {
-                if (!Char.IsLower (input[i])) {
+                if (!char.IsLower (input[i])) {
                     return false;
                 }
             }
@@ -209,7 +209,7 @@ namespace PMC_Desktop {
             ? GetUserManager (CurrentUser)
             : "N/A";
         public string Enabled
-            => CurrentUser != null && !Convert.ToBoolean ((int)CurrentUser.Properties["useraccountcontrol"][0] & 2)
+            => CurrentUser != null && CurrentUser.Properties["useraccountcontrol"].Count > 0 && !Convert.ToBoolean ((int)CurrentUser.Properties["useraccountcontrol"][0] & 2)
             ? "True"
             : "False";
         public string LastLogon

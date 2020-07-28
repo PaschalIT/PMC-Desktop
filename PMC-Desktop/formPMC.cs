@@ -289,24 +289,53 @@ namespace PMC_Desktop {
         }
 
         private void listUMDirectReports_MouseDoubleClick (object sender, System.Windows.Forms.MouseEventArgs e) {
-            if (listUMDirectReports.IndexFromPoint (e.Location) == listUMDirectReports.SelectedIndex) {
+            string name;
+            if (listUMDirectReports.IndexFromPoint (e.Location) == listUMDirectReports.SelectedIndex && listUMDirectReports.SelectedItem.ToString () != "N/A") {
+                name = listUMDirectReports.SelectedItem.ToString ().Replace ("Not found - ", "").Replace ("Term - ", "");
                 if (listUMDirectReports.SelectedItem.ToString ().Contains ("Not found")) {
                     MessageBox.Show ("User not found in Active or Terminated user lists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
-                } else if (listUMDirectReports.SelectedItem.ToString ().Contains ("TERM")) {
+                } else if (listUMDirectReports.SelectedItem.ToString ().Contains ("Term")) {
                     checkUMTerminatedUsers.Checked = true;
                 }
 
                 try {
-                    SearchResult res = ADS.GetSingleUser (listUMDirectReports.SelectedItem.ToString ());
+                    SearchResult res = ADS.GetSingleUser (name);
 
                     if (res == null) {
-                        res = ADS.GetTerminatedUser (listUMDirectReports.SelectedItem.ToString ());
+                        res = ADS.GetTerminatedUser (name);
                     }
 
                     comboUMUserSelect.Text = res.Properties["samaccountname"][0].ToString ();
+                    ActiveControl = labelUMUserSelect;
                 } catch (Exception ex) {
                     MessageBox.Show ($"Could not resolve user identity.  Please select through main user dropdown.\r\n\r\n{ex.InnerException.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void textUMManager_MouseDoubleClick (object sender, System.Windows.Forms.MouseEventArgs e) {
+            string name = textUMManager.Text.Replace ("Not found - ", "").Replace ("Term - ", "");
+            if (textUMManager.Text != null && textUMManager.Text != "") {
+                if (textUMManager.Text.Contains ("Not found")) {
+                    MessageBox.Show ("User not found in Active or Terminated user lists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                } else if (textUMManager.Text.Contains ("Term")) {
+                    checkUMTerminatedUsers.Checked = true;
+                }
+                Refresh ();
+
+                try {
+                    SearchResult res = ADS.GetSingleUser (name);
+
+                    if (res == null) {
+                        res = ADS.GetTerminatedUser (name);
+                    }
+
+                    comboUMUserSelect.Text = res.Properties["samaccountname"][0].ToString ();
+                    ActiveControl = labelUMUserSelect;
+                } catch (Exception ex) {
+                    MessageBox.Show ($"Could not resolve user identity.  Please select through main user dropdown.\r\n\r\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
