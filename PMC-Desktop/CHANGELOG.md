@@ -1,10 +1,20 @@
 #  (2020-07-28)
 
 
+
+## [0.1.5](https://github.com/PaschalIT/PMC-Desktop/compare/0.1.3...0.1.5) (2020-07-28)
+
+
 ### Bug Fixes
 
 * **UM:** Manager/DR double click term user fix ([4f23dc8](https://github.com/PaschalIT/PMC-Desktop/commit/4f23dc85362f90798b83935e5581343b36535b3a))
 * **UM:** User load crash ([1607ffe](https://github.com/PaschalIT/PMC-Desktop/commit/1607ffe6b5ec5ac8a0c5c98efb9a490368242e6f))
+
+
+### Chore
+
+* **Ver:** Bump to push version ([e237281](https://github.com/PaschalIT/PMC-Desktop/commit/e237281b48397a808c5b3c8a02699fdedb1c8153))
+* **Ver:** Bump to push version 0.1.5 ([a2ed060](https://github.com/PaschalIT/PMC-Desktop/commit/a2ed0608250e5cd091b97af42a18c93e181652a8))
 
 
 ### Documentation
