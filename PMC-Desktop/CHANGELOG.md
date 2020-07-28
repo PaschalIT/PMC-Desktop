@@ -7,6 +7,11 @@
 * **UM:** User load crash ([1607ffe](https://github.com/PaschalIT/PMC-Desktop/commit/1607ffe6b5ec5ac8a0c5c98efb9a490368242e6f))
 
 
+### Chore
+
+* **Ver:** Bump to push version ([e237281](https://github.com/PaschalIT/PMC-Desktop/commit/e237281b48397a808c5b3c8a02699fdedb1c8153))
+
+
 ### Documentation
 
 * **Props:** Updated project properties ([7a529e1](https://github.com/PaschalIT/PMC-Desktop/commit/7a529e1464ec633987ef8dd947c8e47a89c59fbc))
