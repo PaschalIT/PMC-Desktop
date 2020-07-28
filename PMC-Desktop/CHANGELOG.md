@@ -1,4 +1,19 @@
-#  (2020-07-27)
+#  (2020-07-28)
+
+
+### Bug Fixes
+
+* **UM:** User load crash ([d4170cc](https://github.com/PaschalIT/PMC-Desktop/commit/d4170ccb606e2a94a124a11f18daa11e84c40b84))
+
+
+### Documentation
+
+* **Props:** Updated project properties ([7a529e1](https://github.com/PaschalIT/PMC-Desktop/commit/7a529e1464ec633987ef8dd947c8e47a89c59fbc))
+
+
+### Features
+
+* **UM:** Added double click to Manager field ([9a2310f](https://github.com/PaschalIT/PMC-Desktop/commit/9a2310fd2cdd72cdfed5c2c643499e1a4640cbfb))
 
 
 

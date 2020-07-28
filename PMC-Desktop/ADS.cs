@@ -209,7 +209,7 @@ namespace PMC_Desktop {
             ? GetUserManager (CurrentUser)
             : "N/A";
         public string Enabled
-            => CurrentUser != null && !Convert.ToBoolean ((int)CurrentUser.Properties["useraccountcontrol"][0] & 2)
+            => CurrentUser != null && CurrentUser.Properties["useraccountcontrol"].Count > 0 && !Convert.ToBoolean ((int)CurrentUser.Properties["useraccountcontrol"][0] & 2)
             ? "True"
             : "False";
         public string LastLogon
