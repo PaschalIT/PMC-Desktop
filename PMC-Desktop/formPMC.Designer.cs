@@ -225,6 +225,7 @@
             this.listUMUserHistory.Name = "listUMUserHistory";
             this.listUMUserHistory.Size = new System.Drawing.Size(113, 433);
             this.listUMUserHistory.TabIndex = 41;
+            this.listUMUserHistory.DataSourceChanged += new System.EventHandler(this.listUMUserHistory_DataSourceChanged);
             this.listUMUserHistory.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listUMUserHistory_MouseDoubleClick);
             // 
             // labelUMUserHistory

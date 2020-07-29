@@ -44,6 +44,7 @@ namespace PMC_Desktop {
             itemFileCurrentUser.Text = $"Current User: {Environment.UserName}";
             Text = $"PMC - {Environment.UserName}";
             listUMUserHistory.DataSource = PMCUserAccessHistory ();
+            listUMUserHistory.SelectedIndex = -1;
         }
 
         private void checkUMTerminatedUsers_CheckedChanged (object sender, EventArgs e) {
@@ -82,6 +83,7 @@ namespace PMC_Desktop {
             textUMLastModified.Text = CurrentUser.LastModified;
             listUMDirectReports.DataSource = CurrentUser.DirectReports;
             listUMUserHistory.DataSource = PMCUserAccessHistory (CurrentUser.Username);
+            listUMUserHistory.SelectedIndex = -1;
         }
 
         private void EnableAdminButtons (bool input = false) {
@@ -109,6 +111,7 @@ namespace PMC_Desktop {
             progress.Refresh ();
             ADS.UpdateUsernameLists (progress);
             listUMUserHistory.DataSource = PMCUserAccessHistory ();
+            listUMUserHistory.SelectedIndex = -1;
             comboUMUserSelect.DataSource = ADS.PopulateUserList (checkUMTerminatedUsers.Checked);
             comboUMUserSelect.SelectedIndex = -1;
             progress.Close ();
@@ -395,7 +398,15 @@ namespace PMC_Desktop {
         }
 
         private void listUMUserHistory_MouseDoubleClick (object sender, System.Windows.Forms.MouseEventArgs e) {
+            if (listUMUserHistory.IndexFromPoint (e.Location) == listUMUserHistory.SelectedIndex) {
+                comboUMUserSelect.Text = listUMUserHistory.SelectedItem.ToString ();
+                listUMUserHistory.SelectedIndex = -1;
+                ActiveControl = labelUMUserSelect;
+            }
+        }
 
+        private void listUMUserHistory_DataSourceChanged (object sender, EventArgs e) {
+            listUMUserHistory.SelectedIndex = -1;
         }
     }
 }
