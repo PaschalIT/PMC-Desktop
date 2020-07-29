@@ -345,6 +345,7 @@
             this.listUMDirectReports.Name = "listUMDirectReports";
             this.listUMDirectReports.Size = new System.Drawing.Size(200, 186);
             this.listUMDirectReports.TabIndex = 27;
+            this.listUMDirectReports.DataSourceChanged += new System.EventHandler(this.listUMDirectReports_DataSourceChanged);
             this.listUMDirectReports.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listUMDirectReports_MouseDoubleClick);
             // 
             // labelUMDirectReports

@@ -1,20 +1,17 @@
-#  (2020-07-28)
-
-
-
-## [0.1.5](https://github.com/PaschalIT/PMC-Desktop/compare/0.1.3...0.1.5) (2020-07-28)
+#  (2020-07-29)
 
 
 ### Bug Fixes
 
 * **UM:** Manager/DR double click term user fix ([4f23dc8](https://github.com/PaschalIT/PMC-Desktop/commit/4f23dc85362f90798b83935e5581343b36535b3a))
+* **UM:** User History Terminated user ([26fa122](https://github.com/PaschalIT/PMC-Desktop/commit/26fa122c7d50e75014a5ea43391fad89b6886e04))
 * **UM:** User load crash ([1607ffe](https://github.com/PaschalIT/PMC-Desktop/commit/1607ffe6b5ec5ac8a0c5c98efb9a490368242e6f))
 
 
 ### Chore
 
 * **Ver:** Bump to push version ([e237281](https://github.com/PaschalIT/PMC-Desktop/commit/e237281b48397a808c5b3c8a02699fdedb1c8153))
-* **Ver:** Bump to push version 0.1.5 ([a2ed060](https://github.com/PaschalIT/PMC-Desktop/commit/a2ed0608250e5cd091b97af42a18c93e181652a8))
+* **Ver:** Bump to push version 0.1.5 ([e3f5c45](https://github.com/PaschalIT/PMC-Desktop/commit/e3f5c45dbe0ddcdae290dde95c196b0e82045da5))
 
 
 ### Documentation
@@ -25,6 +22,8 @@
 ### Features
 
 * **UM:** Added double click to Manager field ([9a2310f](https://github.com/PaschalIT/PMC-Desktop/commit/9a2310fd2cdd72cdfed5c2c643499e1a4640cbfb))
+* **UM:** Added User History double click ([23fc6d8](https://github.com/PaschalIT/PMC-Desktop/commit/23fc6d857bf8ef137cf13a8b76cf23010af81bd0))
+* **UM:** Added User History tracking ([e53ca70](https://github.com/PaschalIT/PMC-Desktop/commit/e53ca70f4e608a697fdfa21b1abc3a51d73f4171))
 
 
 

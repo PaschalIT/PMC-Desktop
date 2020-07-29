@@ -69,7 +69,7 @@ namespace PMC_Desktop {
             textUMTitle.Text = CurrentUser.Title;
             textUMManager.Text = CurrentUser.Manager;
             buttonUMEnableUser.Text = (textUMEnabled.Text = CurrentUser.Enabled) == "True" ? "Disable" : "Enable";
-            textUMEnabled.BackColor = textUMEnabled.Text == "True" ? Color.PaleGreen : Color.MistyRose;
+            textUMEnabled.BackColor = textUMEnabled.Text == "True" ? Color.PaleGreen : Color.LightCoral;
             textUMLastLogon.Text = CurrentUser.LastLogon;
             textUMEmployeeID.Text = CurrentUser.EmployeeID;
             EnableAdminButtons ((textUMEmployeeNumber.Text = CurrentUser.EmployeeNumber).Length == 6);
@@ -82,6 +82,7 @@ namespace PMC_Desktop {
             textUMDateOfTermination.Text = CurrentUser.DateOfTermination;
             textUMLastModified.Text = CurrentUser.LastModified;
             listUMDirectReports.DataSource = CurrentUser.DirectReports;
+            listUMDirectReports.SelectedIndex = -1;
             listUMUserHistory.DataSource = PMCUserAccessHistory (CurrentUser.Username);
             listUMUserHistory.SelectedIndex = -1;
         }
@@ -97,6 +98,10 @@ namespace PMC_Desktop {
             foreach (Control control in tabUserManagement.Controls.OfType<TextBox> ()) {
                 control.Text = null;
             }
+            listUMDirectReports.DataSource = new List<string> {
+                "N/A"
+            };
+            listUMDirectReports.SelectedIndex = -1;
             textUMEnabled.BackColor = SystemColors.ControlLightLight;
             EnableAdminButtons ();
         }
@@ -399,6 +404,19 @@ namespace PMC_Desktop {
 
         private void listUMUserHistory_MouseDoubleClick (object sender, System.Windows.Forms.MouseEventArgs e) {
             if (listUMUserHistory.IndexFromPoint (e.Location) == listUMUserHistory.SelectedIndex) {
+                if (!comboUMUserSelect.Items.Contains (listUMUserHistory.SelectedItem.ToString ())) {
+                    if (checkUMTerminatedUsers.Checked) {
+                        MessageBox.Show ("Could not find user in currently loaded lists of Active or Terminated users.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    } else {
+                        checkUMTerminatedUsers.Checked = true;
+                        if (!comboUMUserSelect.Items.Contains (listUMUserHistory.SelectedItem.ToString ())) {
+                            MessageBox.Show ("Could not find user in currently loaded lists of Active or Terminated users.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            checkUMTerminatedUsers.Checked = false;
+                            return;
+                        }
+                    }
+                }
                 comboUMUserSelect.Text = listUMUserHistory.SelectedItem.ToString ();
                 listUMUserHistory.SelectedIndex = -1;
                 ActiveControl = labelUMUserSelect;
@@ -407,6 +425,10 @@ namespace PMC_Desktop {
 
         private void listUMUserHistory_DataSourceChanged (object sender, EventArgs e) {
             listUMUserHistory.SelectedIndex = -1;
+        }
+
+        private void listUMDirectReports_DataSourceChanged (object sender, EventArgs e) {
+            listUMDirectReports.SelectedIndex = -1;
         }
     }
 }
