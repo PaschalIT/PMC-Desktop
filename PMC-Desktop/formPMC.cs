@@ -430,5 +430,10 @@ namespace PMC_Desktop {
         private void listUMDirectReports_DataSourceChanged (object sender, EventArgs e) {
             listUMDirectReports.SelectedIndex = -1;
         }
+
+        private void buttonUMClearUserHistory_Click (object sender, EventArgs e) {
+            PMCUserAccessHistory (new List<string> ());
+            listUMUserHistory.DataSource = PMCUserAccessHistory ();
+        }
     }
 }

@@ -240,13 +240,13 @@
             // buttonUMClearUserHistory
             // 
             this.buttonUMClearUserHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonUMClearUserHistory.Enabled = false;
             this.buttonUMClearUserHistory.Location = new System.Drawing.Point(5, 490);
             this.buttonUMClearUserHistory.Name = "buttonUMClearUserHistory";
             this.buttonUMClearUserHistory.Size = new System.Drawing.Size(113, 28);
             this.buttonUMClearUserHistory.TabIndex = 39;
             this.buttonUMClearUserHistory.Text = "Clear History";
             this.buttonUMClearUserHistory.UseVisualStyleBackColor = true;
+            this.buttonUMClearUserHistory.Click += new System.EventHandler(this.buttonUMClearUserHistory_Click);
             // 
             // labelUMLastModified
             // 

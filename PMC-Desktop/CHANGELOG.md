@@ -1,10 +1,19 @@
 #  (2020-07-29)
 
 
+### Features
+
+* **UM:** Enabled Clear History button ([037d640](https://github.com/PaschalIT/PMC-Desktop/commit/037d640e329cce4f45e0d7d0bc0eed4a3d7bcc79))
+
+
+
+## [0.1.6](https://github.com/PaschalIT/PMC-Desktop/compare/0.1.3...0.1.6) (2020-07-29)
+
+
 ### Bug Fixes
 
 * **UM:** Manager/DR double click term user fix ([4f23dc8](https://github.com/PaschalIT/PMC-Desktop/commit/4f23dc85362f90798b83935e5581343b36535b3a))
-* **UM:** User History Terminated user ([26fa122](https://github.com/PaschalIT/PMC-Desktop/commit/26fa122c7d50e75014a5ea43391fad89b6886e04))
+* **UM:** User History Terminated user ([288f7c3](https://github.com/PaschalIT/PMC-Desktop/commit/288f7c38e1f2dda20035fd6f01651e44904d0835))
 * **UM:** User load crash ([1607ffe](https://github.com/PaschalIT/PMC-Desktop/commit/1607ffe6b5ec5ac8a0c5c98efb9a490368242e6f))
 
 
