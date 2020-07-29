@@ -54,7 +54,9 @@ namespace PMC_Desktop {
         }
 
         public static List<string> PopulateUserList (bool term) {
-            List<string> temp = new List<string> ();
+            List<string> temp = new List<string> {
+                ""
+            };
             temp.AddRange (UsernameList);
             if (term) {
                 temp.AddRange (UsernameListTerm);

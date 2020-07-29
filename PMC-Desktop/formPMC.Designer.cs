@@ -225,6 +225,8 @@
             this.listUMUserHistory.Name = "listUMUserHistory";
             this.listUMUserHistory.Size = new System.Drawing.Size(113, 433);
             this.listUMUserHistory.TabIndex = 41;
+            this.listUMUserHistory.DataSourceChanged += new System.EventHandler(this.listUMUserHistory_DataSourceChanged);
+            this.listUMUserHistory.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listUMUserHistory_MouseDoubleClick);
             // 
             // labelUMUserHistory
             // 
@@ -244,6 +246,7 @@
             this.buttonUMClearUserHistory.TabIndex = 39;
             this.buttonUMClearUserHistory.Text = "Clear History";
             this.buttonUMClearUserHistory.UseVisualStyleBackColor = true;
+            this.buttonUMClearUserHistory.Click += new System.EventHandler(this.buttonUMClearUserHistory_Click);
             // 
             // labelUMLastModified
             // 
@@ -342,6 +345,7 @@
             this.listUMDirectReports.Name = "listUMDirectReports";
             this.listUMDirectReports.Size = new System.Drawing.Size(200, 186);
             this.listUMDirectReports.TabIndex = 27;
+            this.listUMDirectReports.DataSourceChanged += new System.EventHandler(this.listUMDirectReports_DataSourceChanged);
             this.listUMDirectReports.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listUMDirectReports_MouseDoubleClick);
             // 
             // labelUMDirectReports
