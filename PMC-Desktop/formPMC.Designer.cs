@@ -225,6 +225,7 @@
             this.listUMUserHistory.Name = "listUMUserHistory";
             this.listUMUserHistory.Size = new System.Drawing.Size(113, 433);
             this.listUMUserHistory.TabIndex = 41;
+            this.listUMUserHistory.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listUMUserHistory_MouseDoubleClick);
             // 
             // labelUMUserHistory
             // 
@@ -238,6 +239,7 @@
             // buttonUMClearUserHistory
             // 
             this.buttonUMClearUserHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonUMClearUserHistory.Enabled = false;
             this.buttonUMClearUserHistory.Location = new System.Drawing.Point(5, 490);
             this.buttonUMClearUserHistory.Name = "buttonUMClearUserHistory";
             this.buttonUMClearUserHistory.Size = new System.Drawing.Size(113, 28);
