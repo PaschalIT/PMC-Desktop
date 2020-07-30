@@ -1,13 +1,14 @@
 #  (2020-07-30)
 
 
+### Bug Fixes
 
-## [0.1.7](https://github.com/PaschalIT/PMC-Desktop/compare/0.1.6...0.1.7) (2020-07-30)
+* **UM:** Corrected multiple Direct Reports issues ([c6571cd](https://github.com/PaschalIT/PMC-Desktop/commit/c6571cdd8f092de9549928b5c2385f7006d56c30))
 
 
 ### Features
 
-* **UM:** Allow viewing of extraneous users ([95944a6](https://github.com/PaschalIT/PMC-Desktop/commit/95944a6878c6028e58d450a43f080228a7148aed))
+* **UM:** Allow viewing of extraneous users ([ac5521c](https://github.com/PaschalIT/PMC-Desktop/commit/ac5521ce7cd9f441a0d7c03f0b0b49e21d492559))
 * **UM:** Enabled Clear History button ([9e67b08](https://github.com/PaschalIT/PMC-Desktop/commit/9e67b088065b378cb0341cfc1771976b84867c6c))
 
 

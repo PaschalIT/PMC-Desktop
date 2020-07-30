@@ -15,6 +15,7 @@ using System.DirectoryServices.AccountManagement;
 using IPrompt;
 using Markdig;
 using System.Windows.Input;
+using System.Text.RegularExpressions;
 
 namespace PMC_Desktop {
     public partial class formPMC : Form {
@@ -84,7 +85,7 @@ namespace PMC_Desktop {
             textUMDateOfHire.Text = CurrentUser.DateOfHire;
             textUMDateOfTermination.Text = CurrentUser.DateOfTermination;
             textUMLastModified.Text = CurrentUser.LastModified;
-            listUMDirectReports.DataSource = CurrentUser.DirectReports.Select (user => user.Name).ToList ();
+            listUMDirectReports.DataSource = CurrentUser.DirectReports.Count > 0 ? CurrentUser.DirectReports.Select (user => Regex.IsMatch (user.DistinguishedName, "Terminated") ? $"Term - {user.Name}" : user.Name).ToList () : new List<string> { "N/A" };
             listUMDirectReports.SelectedIndex = -1;
             listUMUserHistory.DataSource = PMCUserAccessHistory (CurrentUser.Username);
             listUMUserHistory.SelectedIndex = -1;
@@ -317,7 +318,7 @@ namespace PMC_Desktop {
 
         private void listUMDirectReports_MouseDoubleClick (object sender, System.Windows.Forms.MouseEventArgs e) {
             string name;
-            if (listUMDirectReports.IndexFromPoint (e.Location) == listUMDirectReports.SelectedIndex && listUMDirectReports.SelectedItem.ToString () != "N/A") {
+            if (listUMDirectReports.IndexFromPoint (e.Location) == listUMDirectReports.SelectedIndex && listUMDirectReports.SelectedItem.ToString () != "N/A" && listUMDirectReports.SelectedIndex.ToString () != "") {
                 name = listUMDirectReports.SelectedItem.ToString ().Replace ("Not found - ", "").Replace ("Term - ", "");
                 if (listUMDirectReports.SelectedItem.ToString ().Contains ("Not found")) {
                     MessageBox.Show ("User not found in Active or Terminated user lists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
