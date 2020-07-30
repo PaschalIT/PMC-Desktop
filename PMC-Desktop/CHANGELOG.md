@@ -1,9 +1,14 @@
-#  (2020-07-29)
+#  (2020-07-30)
+
+
+
+## [0.1.7](https://github.com/PaschalIT/PMC-Desktop/compare/0.1.6...0.1.7) (2020-07-30)
 
 
 ### Features
 
-* **UM:** Enabled Clear History button ([037d640](https://github.com/PaschalIT/PMC-Desktop/commit/037d640e329cce4f45e0d7d0bc0eed4a3d7bcc79))
+* **UM:** Allow viewing of extraneous users ([95944a6](https://github.com/PaschalIT/PMC-Desktop/commit/95944a6878c6028e58d450a43f080228a7148aed))
+* **UM:** Enabled Clear History button ([9e67b08](https://github.com/PaschalIT/PMC-Desktop/commit/9e67b088065b378cb0341cfc1771976b84867c6c))
 
 
 
