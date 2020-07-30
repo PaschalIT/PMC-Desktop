@@ -15,6 +15,7 @@ using System.DirectoryServices.AccountManagement;
 using IPrompt;
 using Markdig;
 using System.Windows.Input;
+using System.Text.RegularExpressions;
 
 namespace PMC_Desktop {
     public partial class formPMC : Form {
@@ -43,6 +44,8 @@ namespace PMC_Desktop {
             label1.Text += $"{items[1]}.{items[2]}.{items[3]}.{items[4]}";
             itemFileCurrentUser.Text = $"Current User: {Environment.UserName}";
             Text = $"PMC - {Environment.UserName}";
+            listUMUserHistory.DataSource = PMCUserAccessHistory ();
+            listUMUserHistory.SelectedIndex = -1;
         }
 
         private void checkUMTerminatedUsers_CheckedChanged (object sender, EventArgs e) {
@@ -51,13 +54,16 @@ namespace PMC_Desktop {
         }
 
         private void comboUMUserSelect_SelectedIndexChanged (object sender, EventArgs e) {
-            if (comboUMUserSelect.SelectedIndex > -1) {
+            if (comboUMUserSelect.SelectedIndex > -1 && comboUMUserSelect.Text != "") {
                 LoadUserProperties ();
-            } else if (comboUMUserSelect.SelectedIndex == -1) {
+            } else if (comboUMUserSelect.SelectedIndex == -1 || comboUMUserSelect.Text == "") {
                 ClearUM ();
             }
         }
 
+        /// <summary>
+        /// Loads user properties for the currently selected user.  Sets User Management display values as appropriate.
+        /// </summary>
         private void LoadUserProperties () {
             CurrentUser.SetUser (comboUMUserSelect.SelectedItem.ToString (), checkUMTerminatedUsers.Checked);
             textUMDisplayName.Text = CurrentUser.Name;
@@ -67,7 +73,7 @@ namespace PMC_Desktop {
             textUMTitle.Text = CurrentUser.Title;
             textUMManager.Text = CurrentUser.Manager;
             buttonUMEnableUser.Text = (textUMEnabled.Text = CurrentUser.Enabled) == "True" ? "Disable" : "Enable";
-            textUMEnabled.BackColor = textUMEnabled.Text == "True" ? Color.PaleGreen : Color.MistyRose;
+            textUMEnabled.BackColor = textUMEnabled.Text == "True" ? Color.PaleGreen : Color.LightCoral;
             textUMLastLogon.Text = CurrentUser.LastLogon;
             textUMEmployeeID.Text = CurrentUser.EmployeeID;
             EnableAdminButtons ((textUMEmployeeNumber.Text = CurrentUser.EmployeeNumber).Length == 6);
@@ -79,9 +85,16 @@ namespace PMC_Desktop {
             textUMDateOfHire.Text = CurrentUser.DateOfHire;
             textUMDateOfTermination.Text = CurrentUser.DateOfTermination;
             textUMLastModified.Text = CurrentUser.LastModified;
-            listUMDirectReports.DataSource = CurrentUser.DirectReports;
+            listUMDirectReports.DataSource = CurrentUser.DirectReports.Count > 0 ? CurrentUser.DirectReports.Select (user => Regex.IsMatch (user.DistinguishedName, "Terminated") ? $"Term - {user.Name}" : user.Name).ToList () : new List<string> { "N/A" };
+            listUMDirectReports.SelectedIndex = -1;
+            listUMUserHistory.DataSource = PMCUserAccessHistory (CurrentUser.Username);
+            listUMUserHistory.SelectedIndex = -1;
         }
 
+        /// <summary>
+        /// Enables or disables Admin-level button controls based on boolean input value.
+        /// </summary>
+        /// <param name="input">If true, Admin-level button controls will be enabled.  Defaults to false.</param>
         private void EnableAdminButtons (bool input = false) {
             buttonUMEnableUser.Enabled = input;
             buttonUMResetPassword.Enabled = input;
@@ -89,10 +102,17 @@ namespace PMC_Desktop {
             buttonUMShowEmployeeNumber.Enabled = input;
         }
 
+        /// <summary>
+        /// Clears listUMDirectReports and all TextBox controls.  Also makes a call to EnableAdminButtons ().
+        /// </summary>
         private void ClearUM () {
             foreach (Control control in tabUserManagement.Controls.OfType<TextBox> ()) {
                 control.Text = null;
             }
+            listUMDirectReports.DataSource = new List<string> {
+                "N/A"
+            };
+            listUMDirectReports.SelectedIndex = -1;
             textUMEnabled.BackColor = SystemColors.ControlLightLight;
             EnableAdminButtons ();
         }
@@ -106,6 +126,8 @@ namespace PMC_Desktop {
             progress.Show ();
             progress.Refresh ();
             ADS.UpdateUsernameLists (progress);
+            listUMUserHistory.DataSource = PMCUserAccessHistory ();
+            listUMUserHistory.SelectedIndex = -1;
             comboUMUserSelect.DataSource = ADS.PopulateUserList (checkUMTerminatedUsers.Checked);
             comboUMUserSelect.SelectedIndex = -1;
             progress.Close ();
@@ -131,6 +153,7 @@ namespace PMC_Desktop {
             progress.Show ();
             progress.Refresh ();
             ADS.UpdateUsernameLists (progress);
+            listUMUserHistory.DataSource = PMCUserAccessHistory ();
             comboUMUserSelect.DataSource = ADS.PopulateUserList (checkUMTerminatedUsers.Checked);
             comboUMUserSelect.SelectedIndex = -1;
             cover.Close ();
@@ -221,6 +244,11 @@ namespace PMC_Desktop {
             }
         }
 
+        /// <summary>
+        /// Performs a recursive search through the provided control and its child controls until the primary focused control is located and returned.
+        /// </summary>
+        /// <param name="control">The control from which to start the search.  FindFocusedControl will search through this control and its children.</param>
+        /// <returns>Returns the primary focused control.</returns>
         public static Control FindFocusedControl (Control control) {
             return (control is ContainerControl container
                 ? FindFocusedControl (container.ActiveControl)
@@ -289,26 +317,162 @@ namespace PMC_Desktop {
         }
 
         private void listUMDirectReports_MouseDoubleClick (object sender, System.Windows.Forms.MouseEventArgs e) {
-            if (listUMDirectReports.IndexFromPoint (e.Location) == listUMDirectReports.SelectedIndex) {
+            string name;
+            if (listUMDirectReports.IndexFromPoint (e.Location) == listUMDirectReports.SelectedIndex && listUMDirectReports.SelectedItem.ToString () != "N/A" && listUMDirectReports.SelectedIndex.ToString () != "") {
+                name = listUMDirectReports.SelectedItem.ToString ().Replace ("Not found - ", "").Replace ("Term - ", "");
                 if (listUMDirectReports.SelectedItem.ToString ().Contains ("Not found")) {
                     MessageBox.Show ("User not found in Active or Terminated user lists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
-                } else if (listUMDirectReports.SelectedItem.ToString ().Contains ("TERM")) {
+                } else if (listUMDirectReports.SelectedItem.ToString ().Contains ("Term")) {
                     checkUMTerminatedUsers.Checked = true;
                 }
 
                 try {
-                    SearchResult res = ADS.GetSingleUser (listUMDirectReports.SelectedItem.ToString ());
+                    SearchResult res = ADS.GetSingleUser (name);
 
                     if (res == null) {
-                        res = ADS.GetTerminatedUser (listUMDirectReports.SelectedItem.ToString ());
+                        res = ADS.GetTerminatedUser (name);
+                    }
+                    if (res == null) {
+                        res = ADS.GetEXUser (name);
+                    }
+                    if (res != null) {
+                        List<string> temp = ADS.PopulateUserList (checkUMTerminatedUsers.Checked);
+                        temp.Add (res.Properties["samaccountname"][0].ToString ());
+                        comboUMUserSelect.DataSource = temp;
                     }
 
                     comboUMUserSelect.Text = res.Properties["samaccountname"][0].ToString ();
+                    ActiveControl = labelUMUserSelect;
                 } catch (Exception ex) {
-                    MessageBox.Show ($"Could not resolve user identity.  Please select through main user dropdown.\r\n\r\n{ex.InnerException.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show ($"Could not resolve user identity.  Please select through main user dropdown.\r\n\r\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void textUMManager_MouseDoubleClick (object sender, System.Windows.Forms.MouseEventArgs e) {
+            if (textUMManager.Text != "N/A") {
+                string name = textUMManager.Text.Replace ("Not found - ", "").Replace ("Term - ", "");
+                if (textUMManager.Text != null && textUMManager.Text != "") {
+                    if (textUMManager.Text.Contains ("Not found")) {
+                        MessageBox.Show ("User not found in Active or Terminated user lists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    } else if (textUMManager.Text.Contains ("Term")) {
+                        checkUMTerminatedUsers.Checked = true;
+                    }
+                    Refresh ();
+
+                    try {
+                        SearchResult res = ADS.GetSingleUser (name);
+
+                        if (res == null) {
+                            res = ADS.GetTerminatedUser (name);
+                        }
+                        if (res == null) {
+                            res = ADS.GetEXUser (name);
+                        }
+                        if (res != null) {
+                            List<string> temp = ADS.PopulateUserList (checkUMTerminatedUsers.Checked);
+                            temp.Add (res.Properties["samaccountname"][0].ToString ());
+                            comboUMUserSelect.DataSource = temp;
+                        }
+
+                        comboUMUserSelect.Text = res.Properties["samaccountname"][0].ToString ();
+                        ActiveControl = labelUMUserSelect;
+                    } catch (Exception ex) {
+                        MessageBox.Show ($"Could not resolve user identity.  Please select through main user dropdown.\r\n\r\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the contents of the current user's PMC History file and inserts the current username at the top.
+        /// </summary>
+        public List<string> PMCUserAccessHistory (string username) {
+            string curruser;
+            List<string> temp;
+            try {
+                curruser = ADS.cred.UserName;
+            } catch {
+                curruser = Environment.UserName;
+            }
+            temp = new List<string> (File.ReadAllLines ($@"C:\Users\{curruser}\AppData\Roaming\Paschal\RecentUserList.pmc"));
+            temp.Remove (username);
+            temp.Insert (0, username);
+            File.WriteAllLines ($@"C:\Users\{curruser}\AppData\Roaming\Paschal\RecentUserList.pmc", temp);
+
+            return temp;
+        }
+
+        /// <summary>
+        /// Accepts a List of string values and writes it to the current user's PMC History file.
+        /// </summary>
+        /// <param name="list"></param>
+        public void PMCUserAccessHistory (List<string> list) {
+            string curruser;
+            try {
+                curruser = ADS.cred.UserName;
+            } catch {
+                curruser = Environment.UserName;
+            }
+            File.WriteAllLines ($@"C:\Users\{curruser}\AppData\Roaming\Paschal\RecentUserList.pmc", list);
+        }
+
+        /// <summary>
+        /// Retrieves the current user's PMC History file.
+        /// </summary>
+        /// <returns></returns>
+        public List<string> PMCUserAccessHistory () {
+            string curruser;
+            try {
+                curruser = ADS.cred.UserName;
+            } catch {
+                curruser = Environment.UserName;
+            }
+
+            return new List<string> (File.ReadAllLines ($@"C:\Users\{curruser}\AppData\Roaming\Paschal\RecentUserList.pmc"));
+        }
+
+        private void listUMUserHistory_MouseDoubleClick (object sender, System.Windows.Forms.MouseEventArgs e) {
+            if (listUMUserHistory.IndexFromPoint (e.Location) == listUMUserHistory.SelectedIndex) {
+                if (!comboUMUserSelect.Items.Contains (listUMUserHistory.SelectedItem.ToString ())) {
+                    if (checkUMTerminatedUsers.Checked) {
+                        MessageBox.Show ("Could not find user in currently loaded lists of Active or Terminated users.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    } else {
+                        checkUMTerminatedUsers.Checked = true;
+                        if (!comboUMUserSelect.Items.Contains (listUMUserHistory.SelectedItem.ToString ())) {
+                            SearchResult test = ADS.GetEXUser (listUMUserHistory.SelectedItem.ToString ());
+                            if (test != null) {
+                                List<string> temp = ADS.PopulateUserList (checkUMTerminatedUsers.Checked);
+                                temp.Add (test.Properties["samaccountname"][0].ToString ());
+                                comboUMUserSelect.DataSource = temp;
+                            } else {
+                                MessageBox.Show ("Could not find user in currently loaded lists of Active or Terminated users.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                checkUMTerminatedUsers.Checked = false;
+                                return;
+                            }
+                        }
+                    }
+                }
+                comboUMUserSelect.Text = listUMUserHistory.SelectedItem.ToString ();
+                listUMUserHistory.SelectedIndex = -1;
+                ActiveControl = labelUMUserSelect;
+            }
+        }
+
+        private void listUMUserHistory_DataSourceChanged (object sender, EventArgs e) {
+            listUMUserHistory.SelectedIndex = -1;
+        }
+
+        private void listUMDirectReports_DataSourceChanged (object sender, EventArgs e) {
+            listUMDirectReports.SelectedIndex = -1;
+        }
+
+        private void buttonUMClearUserHistory_Click (object sender, EventArgs e) {
+            PMCUserAccessHistory (new List<string> ());
+            listUMUserHistory.DataSource = PMCUserAccessHistory ();
         }
     }
 }
