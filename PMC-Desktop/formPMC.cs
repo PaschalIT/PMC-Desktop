@@ -60,6 +60,9 @@ namespace PMC_Desktop {
             }
         }
 
+        /// <summary>
+        /// Loads user properties for the currently selected user.  Sets User Management display values as appropriate.
+        /// </summary>
         private void LoadUserProperties () {
             CurrentUser.SetUser (comboUMUserSelect.SelectedItem.ToString (), checkUMTerminatedUsers.Checked);
             textUMDisplayName.Text = CurrentUser.Name;
@@ -81,12 +84,16 @@ namespace PMC_Desktop {
             textUMDateOfHire.Text = CurrentUser.DateOfHire;
             textUMDateOfTermination.Text = CurrentUser.DateOfTermination;
             textUMLastModified.Text = CurrentUser.LastModified;
-            listUMDirectReports.DataSource = CurrentUser.DirectReports;
+            listUMDirectReports.DataSource = CurrentUser.DirectReports.Select (user => user.Name).ToList ();
             listUMDirectReports.SelectedIndex = -1;
             listUMUserHistory.DataSource = PMCUserAccessHistory (CurrentUser.Username);
             listUMUserHistory.SelectedIndex = -1;
         }
 
+        /// <summary>
+        /// Enables or disables Admin-level button controls based on boolean input value.
+        /// </summary>
+        /// <param name="input">If true, Admin-level button controls will be enabled.  Defaults to false.</param>
         private void EnableAdminButtons (bool input = false) {
             buttonUMEnableUser.Enabled = input;
             buttonUMResetPassword.Enabled = input;
@@ -94,6 +101,9 @@ namespace PMC_Desktop {
             buttonUMShowEmployeeNumber.Enabled = input;
         }
 
+        /// <summary>
+        /// Clears listUMDirectReports and all TextBox controls.  Also makes a call to EnableAdminButtons ().
+        /// </summary>
         private void ClearUM () {
             foreach (Control control in tabUserManagement.Controls.OfType<TextBox> ()) {
                 control.Text = null;
@@ -233,6 +243,11 @@ namespace PMC_Desktop {
             }
         }
 
+        /// <summary>
+        /// Performs a recursive search through the provided control and its child controls until the primary focused control is located and returned.
+        /// </summary>
+        /// <param name="control">The control from which to start the search.  FindFocusedControl will search through this control and its children.</param>
+        /// <returns>Returns the primary focused control.</returns>
         public static Control FindFocusedControl (Control control) {
             return (control is ContainerControl container
                 ? FindFocusedControl (container.ActiveControl)
@@ -317,11 +332,19 @@ namespace PMC_Desktop {
                     if (res == null) {
                         res = ADS.GetTerminatedUser (name);
                     }
+                    if (res == null) {
+                        res = ADS.GetEXUser (name);
+                    }
+                    if (res != null) {
+                        List<string> temp = ADS.PopulateUserList (checkUMTerminatedUsers.Checked);
+                        temp.Add (res.Properties["samaccountname"][0].ToString ());
+                        comboUMUserSelect.DataSource = temp;
+                    }
 
                     comboUMUserSelect.Text = res.Properties["samaccountname"][0].ToString ();
                     ActiveControl = labelUMUserSelect;
                 } catch (Exception ex) {
-                    MessageBox.Show ($"Could not resolve user identity.  Please select through main user dropdown.\r\n\r\n{ex.InnerException.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show ($"Could not resolve user identity.  Please select through main user dropdown.\r\n\r\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -343,6 +366,14 @@ namespace PMC_Desktop {
 
                         if (res == null) {
                             res = ADS.GetTerminatedUser (name);
+                        }
+                        if (res == null) {
+                            res = ADS.GetEXUser (name);
+                        }
+                        if (res != null) {
+                            List<string> temp = ADS.PopulateUserList (checkUMTerminatedUsers.Checked);
+                            temp.Add (res.Properties["samaccountname"][0].ToString ());
+                            comboUMUserSelect.DataSource = temp;
                         }
 
                         comboUMUserSelect.Text = res.Properties["samaccountname"][0].ToString ();
@@ -411,9 +442,16 @@ namespace PMC_Desktop {
                     } else {
                         checkUMTerminatedUsers.Checked = true;
                         if (!comboUMUserSelect.Items.Contains (listUMUserHistory.SelectedItem.ToString ())) {
-                            MessageBox.Show ("Could not find user in currently loaded lists of Active or Terminated users.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            checkUMTerminatedUsers.Checked = false;
-                            return;
+                            SearchResult test = ADS.GetEXUser (listUMUserHistory.SelectedItem.ToString ());
+                            if (test != null) {
+                                List<string> temp = ADS.PopulateUserList (checkUMTerminatedUsers.Checked);
+                                temp.Add (test.Properties["samaccountname"][0].ToString ());
+                                comboUMUserSelect.DataSource = temp;
+                            } else {
+                                MessageBox.Show ("Could not find user in currently loaded lists of Active or Terminated users.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                checkUMTerminatedUsers.Checked = false;
+                                return;
+                            }
                         }
                     }
                 }
