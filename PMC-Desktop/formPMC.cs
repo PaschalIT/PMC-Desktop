@@ -400,7 +400,10 @@ namespace PMC_Desktop {
             temp = new List<string> (File.ReadAllLines ($@"C:\Users\{curruser}\AppData\Roaming\Paschal\RecentUserList.pmc"));
             temp.Remove (username);
             temp.Insert (0, username);
-            File.WriteAllLines ($@"C:\Users\{curruser}\AppData\Roaming\Paschal\RecentUserList.pmc", temp);
+            if (!File.Exists ($@"C:\Users\{curruser.Replace ("-adm", "")}\AppData\Roaming\Paschal\RecentUserList.pmc")) {
+                File.Create ($@"C:\Users\{curruser.Replace ("-adm", "")}\AppData\Roaming\Paschal\RecentUserList.pmc");
+            }
+            File.WriteAllLines ($@"C:\Users\{curruser.Replace ("-adm", "")}\AppData\Roaming\Paschal\RecentUserList.pmc", temp);
 
             return temp;
         }
@@ -416,7 +419,10 @@ namespace PMC_Desktop {
             } catch {
                 curruser = Environment.UserName;
             }
-            File.WriteAllLines ($@"C:\Users\{curruser}\AppData\Roaming\Paschal\RecentUserList.pmc", list);
+            if (!File.Exists ($@"C:\Users\{curruser.Replace ("-adm", "")}\AppData\Roaming\Paschal\RecentUserList.pmc")) {
+                File.Create ($@"C:\Users\{curruser.Replace ("-adm", "")}\AppData\Roaming\Paschal\RecentUserList.pmc");
+            }
+            File.WriteAllLines ($@"C:\Users\{curruser.Replace ("-adm", "")}\AppData\Roaming\Paschal\RecentUserList.pmc", list);
         }
 
         /// <summary>
@@ -430,8 +436,11 @@ namespace PMC_Desktop {
             } catch {
                 curruser = Environment.UserName;
             }
+            if (!File.Exists ($@"C:\Users\{curruser.Replace ("-adm", "")}\AppData\Roaming\Paschal\RecentUserList.pmc")) {
+                File.Create ($@"C:\Users\{curruser.Replace ("-adm", "")}\AppData\Roaming\Paschal\RecentUserList.pmc");
+            }
 
-            return new List<string> (File.ReadAllLines ($@"C:\Users\{curruser}\AppData\Roaming\Paschal\RecentUserList.pmc"));
+            return new List<string> (File.ReadAllLines ($@"C:\Users\{curruser.Replace ("-adm", "")}\AppData\Roaming\Paschal\RecentUserList.pmc"));
         }
 
         private void listUMUserHistory_MouseDoubleClick (object sender, System.Windows.Forms.MouseEventArgs e) {

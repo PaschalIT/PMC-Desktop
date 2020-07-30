@@ -1,6 +1,11 @@
 #  (2020-07-30)
 
 
+### Features
+
+* **User History:** Adjusted target path ([f72f5e8](https://github.com/PaschalIT/PMC-Desktop/commit/f72f5e8ae06b9dfb83cab8508bc8fcd9e16f36d7))
+
+
 
 ## [0.1.8](https://github.com/PaschalIT/PMC-Desktop/compare/0.1.6...0.1.8) (2020-07-30)
 
