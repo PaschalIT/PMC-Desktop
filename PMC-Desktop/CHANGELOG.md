@@ -1,9 +1,13 @@
 #  (2020-07-30)
 
 
+
+## [0.1.8](https://github.com/PaschalIT/PMC-Desktop/compare/0.1.6...0.1.8) (2020-07-30)
+
+
 ### Bug Fixes
 
-* **UM:** Corrected multiple Direct Reports issues ([c6571cd](https://github.com/PaschalIT/PMC-Desktop/commit/c6571cdd8f092de9549928b5c2385f7006d56c30))
+* **UM:** Corrected multiple Direct Reports issues ([066ef8c](https://github.com/PaschalIT/PMC-Desktop/commit/066ef8c94319a94b4fa80edee0c52eb89c52a3dc))
 
 
 ### Features
