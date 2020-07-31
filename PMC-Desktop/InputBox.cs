@@ -20,10 +20,6 @@ namespace PMC_Desktop {
             Text = Caption;
         }
 
-        public string newPass {
-            get {
-                return textInput.Text;
-            }
-        }
+        public string Result => textInput.Text;
     }
 }

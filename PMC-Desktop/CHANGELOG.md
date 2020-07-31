@@ -1,9 +1,10 @@
-#  (2020-07-30)
+#  (2020-07-31)
 
 
 ### Features
 
-* **User History:** Adjusted target path ([f72f5e8](https://github.com/PaschalIT/PMC-Desktop/commit/f72f5e8ae06b9dfb83cab8508bc8fcd9e16f36d7))
+* **EU:** Added beginnings of Edit User form ([3d10c3f](https://github.com/PaschalIT/PMC-Desktop/commit/3d10c3f5958ba38012bb4f70924d8bbcd557a374))
+* **User History:** Adjusted target path ([be6831f](https://github.com/PaschalIT/PMC-Desktop/commit/be6831ff596ad0a60a43e1df377ca60fe426a6f0))
 
 
 

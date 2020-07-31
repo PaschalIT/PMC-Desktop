@@ -1,20 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.DirectoryServices;
-using System.Runtime.InteropServices;
-using System.Deployment.Application;
 using System.IO;
-using System.DirectoryServices.AccountManagement;
-using IPrompt;
-using Markdig;
-using System.Windows.Input;
 using System.Text.RegularExpressions;
 
 namespace PMC_Desktop {
@@ -31,6 +22,7 @@ namespace PMC_Desktop {
                 control.BackColor = SystemColors.ControlLightLight;
                 control.ForeColor = SystemColors.WindowText;
                 control.BorderStyle = BorderStyle.FixedSingle;
+                control.Cursor = Cursors.Arrow;
             }
             label1.Text = "PMC v";
             //if (ApplicationDeployment.IsNetworkDeployed) {
@@ -100,6 +92,7 @@ namespace PMC_Desktop {
             buttonUMResetPassword.Enabled = input;
             buttonUMUnlockAccount.Enabled = input;
             buttonUMShowEmployeeNumber.Enabled = input;
+            buttonUMEditUser.Enabled = input;
         }
 
         /// <summary>
@@ -181,7 +174,7 @@ namespace PMC_Desktop {
                 using (InputBox inputBox = new InputBox ("Please provide new password.", "Reset Password")) {
                     if (inputBox.ShowDialog () == DialogResult.OK) {
                         try {
-                            CurrentUser.userTools.SetPassword (inputBox.newPass);
+                            CurrentUser.userTools.SetPassword (inputBox.Result);
                             MessageBox.Show ("User password set successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             LoadUserProperties ();
                         } catch (Exception ex) when (ex.InnerException.Message.Contains ("password complexity")) {
@@ -397,7 +390,7 @@ namespace PMC_Desktop {
             } catch {
                 curruser = Environment.UserName;
             }
-            temp = new List<string> (File.ReadAllLines ($@"C:\Users\{curruser}\AppData\Roaming\Paschal\RecentUserList.pmc"));
+            temp = new List<string> (File.ReadAllLines ($@"C:\Users\{curruser.Replace ("-adm", "")}\AppData\Roaming\Paschal\RecentUserList.pmc"));
             temp.Remove (username);
             temp.Insert (0, username);
             if (!File.Exists ($@"C:\Users\{curruser.Replace ("-adm", "")}\AppData\Roaming\Paschal\RecentUserList.pmc")) {
@@ -482,6 +475,15 @@ namespace PMC_Desktop {
         private void buttonUMClearUserHistory_Click (object sender, EventArgs e) {
             PMCUserAccessHistory (new List<string> ());
             listUMUserHistory.DataSource = PMCUserAccessHistory ();
+        }
+
+        private void buttonUMEditUser_Click (object sender, EventArgs e) {
+            Plexiglass cover = new Plexiglass (this);
+            formEditUser edit = new formEditUser (CurrentUser);
+            cover.Show ();
+            edit.ShowDialog ();
+
+            cover.Close ();
         }
     }
 }

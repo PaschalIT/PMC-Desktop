@@ -88,10 +88,14 @@
             this.itemCommands = new System.Windows.Forms.ToolStripMenuItem();
             this.resetUserPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unlockUserAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextUMEdit = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.itemUMEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonUMEditUser = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabUserManagement.SuspendLayout();
             this.contextVersion.SuspendLayout();
             this.menuPMC.SuspendLayout();
+            this.contextUMEdit.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -111,6 +115,7 @@
             // 
             this.tabUserManagement.BackgroundImage = global::PMC_Desktop.Properties.Resources.Paschal_P_10;
             this.tabUserManagement.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.tabUserManagement.Controls.Add(this.buttonUMEditUser);
             this.tabUserManagement.Controls.Add(this.buttonUMEnableUser);
             this.tabUserManagement.Controls.Add(this.buttonUMResetPassword);
             this.tabUserManagement.Controls.Add(this.buttonUMUnlockAccount);
@@ -691,6 +696,29 @@
             this.unlockUserAccountToolStripMenuItem.Text = "Unlock User Account (Alt-U)";
             this.unlockUserAccountToolStripMenuItem.Click += new System.EventHandler(this.unlockUserAccountToolStripMenuItem_Click);
             // 
+            // contextUMEdit
+            // 
+            this.contextUMEdit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.itemUMEdit});
+            this.contextUMEdit.Name = "contextUMEdit";
+            this.contextUMEdit.Size = new System.Drawing.Size(95, 26);
+            // 
+            // itemUMEdit
+            // 
+            this.itemUMEdit.Name = "itemUMEdit";
+            this.itemUMEdit.Size = new System.Drawing.Size(94, 22);
+            this.itemUMEdit.Text = "Edit";
+            // 
+            // buttonUMEditUser
+            // 
+            this.buttonUMEditUser.Location = new System.Drawing.Point(477, 315);
+            this.buttonUMEditUser.Name = "buttonUMEditUser";
+            this.buttonUMEditUser.Size = new System.Drawing.Size(97, 23);
+            this.buttonUMEditUser.TabIndex = 47;
+            this.buttonUMEditUser.Text = "Edit User";
+            this.buttonUMEditUser.UseVisualStyleBackColor = true;
+            this.buttonUMEditUser.Click += new System.EventHandler(this.buttonUMEditUser_Click);
+            // 
             // formPMC
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -707,7 +735,7 @@
             this.MinimumSize = new System.Drawing.Size(900, 550);
             this.Name = "formPMC";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "PMC";
+            this.Text = "l";
             this.Load += new System.EventHandler(this.formPMC_Load);
             this.Shown += new System.EventHandler(this.formPMC_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.formPMC_KeyDown);
@@ -717,6 +745,7 @@
             this.contextVersion.ResumeLayout(false);
             this.menuPMC.ResumeLayout(false);
             this.menuPMC.PerformLayout();
+            this.contextUMEdit.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -787,6 +816,9 @@
         private System.Windows.Forms.ToolStripMenuItem itemFileReloadPMC;
         private System.Windows.Forms.ContextMenuStrip contextVersion;
         private System.Windows.Forms.ToolStripMenuItem itemChangelog;
+        private System.Windows.Forms.ContextMenuStrip contextUMEdit;
+        private System.Windows.Forms.ToolStripMenuItem itemUMEdit;
+        private System.Windows.Forms.Button buttonUMEditUser;
     }
 }
 
