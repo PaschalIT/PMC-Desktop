@@ -366,7 +366,7 @@ namespace PMC_Desktop {
         /// </summary>
         public string LastLogon
             => CurrentUser != null && CurrentUser.Properties["lastlogon"].Count > 0
-            ? DateTime.FromFileTime ((long)CurrentUser.Properties["lastlogon"][0]).ToString ()
+            ? DateTime.FromFileTime ((long)CurrentUser.Properties["lastlogon"][0]).ToLocalTime ().ToString ()
             : "N/A";
         /// <summary>
         /// Employee ID of user.
@@ -387,7 +387,7 @@ namespace PMC_Desktop {
         /// </summary>
         public string PassLastChanged
             => CurrentUser != null && CurrentUser.Properties["pwdlastset"].Count > 0
-            ? DateTime.FromFileTime ((long)CurrentUser.Properties["pwdlastset"][0]).ToString ()
+            ? DateTime.FromFileTime ((long)CurrentUser.Properties["pwdlastset"][0]).ToLocalTime ().ToString ()
             : "N/A";
         /// <summary>
         /// String date/time of when the user's password will expire, if at all.
@@ -395,7 +395,7 @@ namespace PMC_Desktop {
         public string PassExpiration
             => CurrentUser == null || (CurrentUser.Properties["pwdlastset"].Count > 0 && Convert.ToBoolean ((int)CurrentUser.Properties["useraccountcontrol"][0] & 65536))
             ? "N/A" 
-            : DateTime.FromFileTime ((long)CurrentUser.Properties["pwdlastset"][0]).AddDays (120).ToString ();
+            : DateTime.FromFileTime ((long)CurrentUser.Properties["pwdlastset"][0]).ToLocalTime ().AddDays (120).ToString ();
         /// <summary>
         /// Integer of the number of times the user has failed logon validation.
         /// </summary>
@@ -408,7 +408,7 @@ namespace PMC_Desktop {
         /// </summary>
         public string FailedLogonTime
             => CurrentUser != null && CurrentUser.Properties["badpasswordtime"].Count > 0
-            ? DateTime.FromFileTime ((long)CurrentUser.Properties["badpasswordtime"][0]).ToString ()
+            ? DateTime.FromFileTime ((long)CurrentUser.Properties["badpasswordtime"][0]).ToLocalTime ().ToString ()
             : "N/A";
         /// <summary>
         /// String date of when the user was hired.
@@ -429,7 +429,7 @@ namespace PMC_Desktop {
         /// </summary>
         public string LastModified
             => CurrentUser != null && CurrentUser.Properties["whenchanged"].Count > 0
-            ? CurrentUser.Properties["whenchanged"][0].ToString () // DateTime.FromFileTime ((long)CurrentUser.Properties["whenchanged"][0]).ToString ()
+            ? DateTime.Parse (CurrentUser.Properties["whenchanged"][0].ToString ()).ToLocalTime ().ToString ()
             : "N/A";
         /// <summary>
         /// String list showing the Display Names of all Direct Reports under the user, if any.

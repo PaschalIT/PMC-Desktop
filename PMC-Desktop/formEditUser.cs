@@ -12,7 +12,8 @@ using System.Windows.Forms;
 
 namespace PMC_Desktop {
     public partial class formEditUser : Form {
-        private static User UserObj;
+        private static User UserObj = new User ();
+        private static User ManagerObj = new User ();
         private static bool isFirstLoad = true;
 
         public formEditUser (User user) {
@@ -25,47 +26,67 @@ namespace PMC_Desktop {
             isFirstLoad = true;
             UserObj = user;
             Text = $"Editing: {user.userTools.DisplayName}";
-            textEUName.Text = user.userTools.DisplayName;
+            textEUFirstName.Text = user.userTools.GivenName;
+            textEUMiddleName.Text = user.userTools.MiddleName ?? "";
+            textEULastName.Text = user.userTools.Surname;
+
+            comboEUDepartment.SelectedIndex = comboEUDepartment.Items.IndexOf (user.Department);
+
+            textEUTitle.Text = UserObj.Title;
+
+            ManagerObj.SetUser (UserObj.Manager, true);
+            textEUManager.Text = ManagerObj.Username;
+            labelEUManagerName.Text = ManagerObj.Name;
+
             PropertyValueCollection temp = user.UserObject.Properties["proxyaddresses"];
             List<string> proxyAddresses = new List<string> ();
             foreach (var item in temp) {
                 proxyAddresses.Add (item.ToString ());
             }
-
             string primary = proxyAddresses.FirstOrDefault (item => item.Contains ("SMTP:"));
             proxyAddresses.Remove (primary);
             proxyAddresses.Insert (0, primary);
 
             comboEUPrimaryEmailAddress.Items.Clear ();
             listEUProxyAddresses.Items.Clear ();
-            proxyAddresses.ForEach (item => {
-                comboEUPrimaryEmailAddress.Items.Add (item.Substring (5));
-                listEUProxyAddresses.Items.Add (item);
-                });
-            comboEUPrimaryEmailAddress.SelectedIndex = 0;
+
+            try {
+                if (proxyAddresses.Count > 0) {
+                    proxyAddresses.ForEach (item => {
+                        comboEUPrimaryEmailAddress.Items.Add (item.Substring (5));
+                        listEUProxyAddresses.Items.Add (item);
+                    });
+                    comboEUPrimaryEmailAddress.SelectedIndex = 0;
+
+                    comboEUPrimaryEmailAddress.Enabled = true;
+                    listEUProxyAddresses.Enabled = true;
+                    buttonEUAddNewEmail.Enabled = true;
+                    labelEUUserEmailNotEnabled.Visible = false;
+                }
+            } catch {
+                comboEUPrimaryEmailAddress.Enabled = false;
+                listEUProxyAddresses.Enabled = false;
+                buttonEUAddNewEmail.Enabled = false;
+                labelEUUserEmailNotEnabled.Visible = true;
+            }
 
             isFirstLoad = false;
         }
 
         private void buttonEUAddNewEmail_Click (object sender, EventArgs e) {
-            InputBox input = new InputBox ("Please input new email address.", "New Email Address");
+            EmailBox input = new EmailBox ();
             if (input.ShowDialog () == DialogResult.OK) {
-                if (CheckNewEmail (listEUProxyAddresses.Items, input.Result)) {
-                    UserObj.UserObject.Properties["proxyaddresses"].Add ($"smtp:{input.Result}");
-                    UserObj.UserObject.CommitChanges ();
-                    UserObj.UserObject.RefreshCache ();
+                string newemail = input.Result;
+                if (CheckNewEmail (listEUProxyAddresses.Items, newemail)) {
+                    UserObj.UserObject.Properties["proxyaddresses"].Add ($"smtp:{newemail}");
                     LoadUserInfo (UserObj);
                 }
             }
         }
 
         private bool CheckNewEmail (ListBox.ObjectCollection curr, string add) {
-            foreach (string item in curr) {
+            foreach (object item in curr) {
                 if (item.ToString ().Contains (add)) {
-                    MessageBox.Show ("Email address already exists in user properties.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                } else if (!Regex.IsMatch (add, @"^[A-Za-z0-9._%+-]+@(gopaschal|paschalcorp)\.com")) {
-                    MessageBox.Show ("Email address must be a properly formatted valid email address with the domain '@gopaschal.com' or '@paschalcorp.com'.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
@@ -89,12 +110,12 @@ namespace PMC_Desktop {
                 list.Insert (0, changeToPrimary);
                 UserObj.UserObject.Properties["proxyaddresses"].Clear ();
                 UserObj.UserObject.Properties["proxyaddresses"].AddRange (list.ToArray ());
-                UserObj.UserObject.CommitChanges ();
-                UserObj.userTools.Save ();
-                UserObj.SetUser (UserObj.Username, true);
-                UserObj.UserObject.RefreshCache ();
                 LoadUserInfo (UserObj);
             }
+        }
+
+        private void buttonEUApplyChanges_Click (object sender, EventArgs e) {
+
         }
     }
 }
