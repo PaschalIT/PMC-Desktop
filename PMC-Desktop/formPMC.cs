@@ -234,6 +234,9 @@ namespace PMC_Desktop {
                     //e.Handled = true;
                 }
                 ActiveControl = labelUMUserSelect;
+            } else if (e.KeyCode == Keys.F5) {
+                LoadUserProperties ();
+                ActiveControl = labelUMUserSelect;
             }
         }
 
@@ -482,6 +485,7 @@ namespace PMC_Desktop {
             formEditUser edit = new formEditUser (CurrentUser);
             cover.Show ();
             edit.ShowDialog ();
+            LoadUserProperties ();
 
             cover.Close ();
         }

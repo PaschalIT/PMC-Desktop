@@ -243,7 +243,7 @@ namespace PMC_Desktop {
 
                 if (CurrentUser != null) {
                     userTools = UserPrincipal.FindByIdentity (ADS.context, Username);
-                    UserObject = CurrentUser;
+                    UserObject = CurrentUser.GetDirectoryEntry ();
                 }
             }
         }
@@ -293,7 +293,7 @@ namespace PMC_Desktop {
         /// SearchResult value for internal usage.
         /// </summary>
         private SearchResult CurrentUser;
-        public SearchResult UserObject;
+        public DirectoryEntry UserObject;
         /// <summary>
         /// UserPrincipal value for usage in complex processes.  Ex. Reset Password, Enable/Disable Account.
         /// </summary>
