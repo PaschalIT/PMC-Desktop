@@ -1,9 +1,12 @@
-#  (2020-07-31)
+#  (2020-08-05)
 
 
 ### Features
 
-* **EU:** Added beginnings of Edit User form ([3d10c3f](https://github.com/PaschalIT/PMC-Desktop/commit/3d10c3f5958ba38012bb4f70924d8bbcd557a374))
+* **EU:** Added beginnings of Edit User form ([2d93c24](https://github.com/PaschalIT/PMC-Desktop/commit/2d93c24cfc8d82a801cb0a8d800cba10009b8069))
+* **EU:** Added Email functionality to Edit User ([1276b4e](https://github.com/PaschalIT/PMC-Desktop/commit/1276b4eb4279932e63f67ad585934a58b78d066b))
+* **EU:** Continued work on Edit User ([2c0388e](https://github.com/PaschalIT/PMC-Desktop/commit/2c0388e2c0a39f3d55fed3959f39b1769d975cb6))
+* **EU/CE:** Started Confirm dialog ([717fd98](https://github.com/PaschalIT/PMC-Desktop/commit/717fd983986c66c930065924109ed1e65c9b4f91))
 * **User History:** Adjusted target path ([be6831f](https://github.com/PaschalIT/PMC-Desktop/commit/be6831ff596ad0a60a43e1df377ca60fe426a6f0))
 
 

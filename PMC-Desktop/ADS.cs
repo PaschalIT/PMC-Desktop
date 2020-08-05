@@ -118,21 +118,25 @@ namespace PMC_Desktop {
         /// <param name="input">String input of unique identifier for user to return.  DistinguishedName or SamAccountName are preferred, otherwise uses ANR.</param>
         /// <returns>SearchResult object of located user information.</returns>
         public static SearchResult GetSingleUser (string input) {
-            if (Regex.IsMatch (input, "CN=")) {
-                searcher.Filter = $"(&(objectClass=user)(distinguishedname={input}))";
-                SearchResult temp = searcher.FindOne ();
-                searcher.Filter = "(objectClass=user)";
-                return temp;
-            } else if (IsLower (input)) {
-                searcher.Filter = $"(&(objectClass=user)(samaccountname={input}))";
-                SearchResult temp = searcher.FindOne ();
-                searcher.Filter = "(objectClass=user)";
-                return temp;
+            if (input != "" && input != null) {
+                if (Regex.IsMatch (input, "CN=")) {
+                    searcher.Filter = $"(&(objectClass=user)(distinguishedname={input}))";
+                    SearchResult temp = searcher.FindOne ();
+                    searcher.Filter = "(objectClass=user)";
+                    return temp;
+                } else if (IsLower (input)) {
+                    searcher.Filter = $"(&(objectClass=user)(samaccountname={input}))";
+                    SearchResult temp = searcher.FindOne ();
+                    searcher.Filter = "(objectClass=user)";
+                    return temp;
+                } else {
+                    searcher.Filter = $"(&(objectClass=user)(anr={input}))";
+                    SearchResult temp = searcher.FindOne ();
+                    searcher.Filter = "(objectClass=user)";
+                    return temp;
+                }
             } else {
-                searcher.Filter = $"(&(objectClass=user)(anr={input}))";
-                SearchResult temp = searcher.FindOne ();
-                searcher.Filter = "(objectClass=user)";
-                return temp;
+                return null;
             }
         }
 
@@ -142,40 +146,48 @@ namespace PMC_Desktop {
         /// <param name="input">String input of unique identifier for user to return.  DistinguishedName or SamAccountName are preferred, otherwise uses ANR.</param>
         /// <returns>SearchResult object of located user information.</returns>
         public static SearchResult GetTerminatedUser (string input) {
-            if (Regex.IsMatch (input, "CN=")) {
-                termSearcher.Filter = $"(&(objectClass=user)(distinguishedname={input}))";
-                SearchResult temp = termSearcher.FindOne ();
-                termSearcher.Filter = "(objectClass=user)";
-                return temp;
-            } else if (IsLower (input)) {
-                termSearcher.Filter = $"(&(objectClass=user)(samaccountname={input}))";
-                SearchResult temp = termSearcher.FindOne ();
-                termSearcher.Filter = "(objectClass=user)";
-                return temp;
+            if (input != "" && input != null) {
+                if (Regex.IsMatch (input, "CN=")) {
+                    termSearcher.Filter = $"(&(objectClass=user)(distinguishedname={input}))";
+                    SearchResult temp = termSearcher.FindOne ();
+                    termSearcher.Filter = "(objectClass=user)";
+                    return temp;
+                } else if (IsLower (input)) {
+                    termSearcher.Filter = $"(&(objectClass=user)(samaccountname={input}))";
+                    SearchResult temp = termSearcher.FindOne ();
+                    termSearcher.Filter = "(objectClass=user)";
+                    return temp;
+                } else {
+                    termSearcher.Filter = $"(&(objectClass=user)(anr={input}))";
+                    SearchResult temp = termSearcher.FindOne ();
+                    termSearcher.Filter = "(objectClass=user)";
+                    return temp;
+                }
             } else {
-                termSearcher.Filter = $"(&(objectClass=user)(anr={input}))";
-                SearchResult temp = termSearcher.FindOne ();
-                termSearcher.Filter = "(objectClass=user)";
-                return temp;
+                return null;
             }
         }
 
         public static SearchResult GetEXUser (string input) {
-            if (Regex.IsMatch (input, "CN=")) {
-                exSearcher.Filter = $"(&(objectClass=user)(distinguishedname={input}))";
-                SearchResult temp = exSearcher.FindOne ();
-                exSearcher.Filter = "(objectClass=user)";
-                return temp;
-            } else if (IsLower (input)) {
-                exSearcher.Filter = $"(&(objectClass=user)(samaccountname={input}))";
-                SearchResult temp = exSearcher.FindOne ();
-                exSearcher.Filter = "(objectClass=user)";
-                return temp;
+            if (input != "" && input != null) {
+                if (Regex.IsMatch (input, "CN=")) {
+                    exSearcher.Filter = $"(&(objectClass=user)(distinguishedname={input}))";
+                    SearchResult temp = exSearcher.FindOne ();
+                    exSearcher.Filter = "(objectClass=user)";
+                    return temp;
+                } else if (IsLower (input)) {
+                    exSearcher.Filter = $"(&(objectClass=user)(samaccountname={input}))";
+                    SearchResult temp = exSearcher.FindOne ();
+                    exSearcher.Filter = "(objectClass=user)";
+                    return temp;
+                } else {
+                    exSearcher.Filter = $"(&(objectClass=user)(anr={input}))";
+                    SearchResult temp = exSearcher.FindOne ();
+                    exSearcher.Filter = "(objectClass=user)";
+                    return temp;
+                }
             } else {
-                exSearcher.Filter = $"(&(objectClass=user)(anr={input}))";
-                SearchResult temp = exSearcher.FindOne ();
-                exSearcher.Filter = "(objectClass=user)";
-                return temp;
+                return null;
             }
         }
 
